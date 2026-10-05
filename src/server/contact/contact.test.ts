@@ -65,6 +65,28 @@ describe("validación y plantilla de correo", () => {
     expect(email.text).toContain("SIP-000012");
   });
 
+  it("integra la marca PNG en el correo y conserva el dominio y los datos legibles", () => {
+    const email = contactEmail(input, "3", new Date("2026-10-05T17:00:00Z"), config.from);
+    const logo = email.attachments?.[0];
+    expect(logo).toMatchObject({
+      filename: "sip-logo.png",
+      content_type: "image/png",
+      content_id: "sip-logo",
+    });
+    const png = Buffer.from(logo?.content ?? "", "base64");
+    expect(png.subarray(0, 8)).toEqual(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+    expect(png.readUInt32BE(16)).toBe(380);
+    expect(png.length).toBeLessThan(12_000);
+    expect(email.html).toContain('src="cid:sip-logo"');
+    expect(email.html).toContain('href="https://sipintegrales.com"');
+    expect(email.html).not.toContain("netlify.app");
+    expect(email.html).toContain("Hola, Humberto.");
+    expect(email.html).toContain("Ana Prueba, de Ejemplo,");
+    expect(email.html).toContain("Manufactura");
+    expect(email.text).toContain("https://sipintegrales.com");
+    expect(email.text).toContain("Puedes responder a este correo");
+  });
+
   it("exige un remitente del dominio de SIP y una clave privada", () => {
     expect(() => mailConfig({})).toThrow("SIP_MAIL_CONFIG_MISSING");
     expect(() => mailConfig({ RESEND_API_KEY: "test", CONTACT_MAIL_FROM: "otro@example.com" })).toThrow();

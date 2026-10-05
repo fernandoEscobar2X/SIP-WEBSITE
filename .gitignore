@@ -57,6 +57,7 @@ npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 src/features/whatsapp/qr.generated.ts
+src/server/contact/logo.generated.ts
 
 # Cabeceras de Netlify: se generan en el prebuild desde src/lib/security.ts
 public/_headers

@@ -5,6 +5,7 @@
 export const site = {
   name: "Sistemas Inteligentes del Pacífico",
   shortName: "SIP",
+  domain: "sipintegrales.com",
   foundingYear: 2026,
   email: "humberto@sipintegrales.com",
   whatsapp: {
@@ -32,7 +33,7 @@ export const site = {
 /**
  * URL pública del sitio, resuelta en build.
  * Prioridad: variable explícita → URL de Netlify según contexto → localhost.
- * El dominio definitivo aún no está decidido; se fija con NEXT_PUBLIC_SITE_URL.
+ * Producción fija el dominio de SIP con NEXT_PUBLIC_SITE_URL en netlify.toml.
  */
 function resolveSiteUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
