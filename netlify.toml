@@ -3,8 +3,15 @@
   command = "npm run build"
   publish = "out"
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 [build.environment]
   NODE_VERSION = "24"
+
+[context.production.environment]
+  NEXT_PUBLIC_SITE_URL = "https://sipintegrales.com"
 
 # "/" según el idioma del navegador. Inglés si es su primera preferencia; si no, español.
 [[redirects]]

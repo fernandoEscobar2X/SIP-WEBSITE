@@ -13,7 +13,7 @@ const secrets = [
   /(?:postgres(?:ql)?|mysql|mongodb(?:\+srv)?):\/\/[^\s:]+:[^\s@]+@/i,
 ];
 for (const file of files) {
-  if (!/\.(?:[cm]?[jt]sx?|json|toml|ya?ml|html|css|txt)$/.test(file)) continue;
+  if (!/\.(?:[cm]?[jt]sx?|json|toml|ya?ml|html|css|txt|sql)$/.test(file)) continue;
   const content = execFileSync("git", ["show", `:${file}`], {
     encoding: "utf8",
     maxBuffer: 10 * 1024 * 1024,

@@ -342,11 +342,7 @@
     "lead": "Cuéntanos qué pasa en tu operación y qué te gustaría ver en tiempo real. Te responde el equipo que lo va a construir.",
     "channels": "Canales directos",
     "emailLabel": "Correo",
-    "copy": "Copiar correo",
-    "copied": "Correo copiado",
     "whatsappLabel": "WhatsApp",
-    "timeLabel": "Hora en Tijuana",
-    "yourTime": "tu hora: {time}",
     "form": {
       "label": "Formulario de contacto",
       "name": "Nombre",

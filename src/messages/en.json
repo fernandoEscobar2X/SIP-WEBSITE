@@ -342,11 +342,7 @@
     "lead": "Tell us what is happening in your operation and what you would like to see in real time. The team that will build it is the one that answers.",
     "channels": "Direct channels",
     "emailLabel": "Email",
-    "copy": "Copy email",
-    "copied": "Email copied",
     "whatsappLabel": "WhatsApp",
-    "timeLabel": "Time in Tijuana",
-    "yourTime": "your time: {time}",
     "form": {
       "label": "Contact form",
       "name": "Name",

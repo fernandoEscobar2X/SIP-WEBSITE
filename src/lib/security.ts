@@ -55,7 +55,7 @@ export function headerRules(options: SecurityOptions): readonly HeaderRule[] {
         "Permissions-Policy": "camera=(), microphone=(), geolocation=(), browsing-topics=()",
         "Cross-Origin-Opener-Policy": "same-origin",
         "Cross-Origin-Resource-Policy": "same-origin",
-        "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+        "Strict-Transport-Security": "max-age=31536000",
       },
     },
     // Recursos con hash en el nombre (Next y scripts/media.mjs): nunca cambian de contenido.

@@ -59,10 +59,10 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
     // suppressHydrationWarning: el script de arranque agrega data-daypart/data-motion a <html>
     // antes de hidratar (solo afecta a los atributos de este elemento).
     <html lang={localeTag[locale].lang} className={fontVariables} suppressHydrationWarning>
-      <head>
-        <InlineScript html={bootScript} />
-      </head>
+      <head />
       <body>
+        {/* Antes de cualquier contenido visible; fuera del head que Next reorganiza para metadata. */}
+        <InlineScript html={bootScript} />
         <DaypartSync />
         <script
           type="application/ld+json"

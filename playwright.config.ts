@@ -4,9 +4,9 @@ const PORT = 4321;
 
 /**
  * E2E sobre el export estático servido como en Netlify (scripts/serve-static.mjs), en una
- * matriz de dispositivos reales:
- * - desktop: Chrome y Edge instalados, y Safari (WebKit de Playwright);
- * - iPhone y iPad con WebKit: en iOS todos los navegadores usan el motor de Safari;
+ * matriz de navegadores y dispositivos emulados:
+ * - desktop: Chrome y Edge instalados, Firefox y WebKit de Playwright;
+ * - iPhone y iPad emulados con WebKit;
  * - Android con Chrome, en la pantalla más angosta de la matriz (360 px).
  * `metadata.form` dice a las pruebas qué experiencia esperar (desktop, phone, tablet).
  */

@@ -24,6 +24,8 @@
     "audit": "npm audit --audit-level=moderate",
     "audit:production": "npm audit --omit=dev --audit-level=moderate",
     "check:publication": "node scripts/check-publication.mjs",
+    "mail:check": "node --env-file-if-exists=.env.local scripts/contact-mail.mjs",
+    "mail:migrate": "node --env-file-if-exists=.env.local scripts/contact-mail.mjs --migrate",
     "check": "npm run typecheck && npm run lint && npm run test"
   },
   "dependencies": {

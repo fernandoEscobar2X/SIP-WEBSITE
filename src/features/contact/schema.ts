@@ -52,6 +52,7 @@ export const contactSchema = z.object({
   telefono: z
     .string()
     .trim()
+    .refine(cleanLine, { error: "invalid" })
     .refine((value) => value === "" || /^[+\d][\d\s().-]{6,19}$/.test(value), { error: "phone" }),
   industria: z.union([z.enum(industryOptions), z.literal("")], { error: "invalid" }),
   mensaje: text(10, 2000).refine(cleanMessage, { error: "invalid" }),

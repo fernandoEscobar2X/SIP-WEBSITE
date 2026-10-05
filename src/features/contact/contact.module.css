@@ -125,36 +125,6 @@
     }
   }
 
-  .copy {
-    padding: 0.35rem 0.8rem;
-    border: 1px solid var(--surface-line);
-    background: none;
-    color: var(--surface-fg);
-    font-family: var(--font-display);
-    font-size: var(--text-xs);
-    font-weight: var(--font-weight-semibold);
-    font-stretch: 90%;
-    cursor: pointer;
-    transition:
-      border-color var(--duration-fast) var(--ease-sip-out),
-      background-color var(--duration-fast) var(--ease-sip-out),
-      color var(--duration-fast) var(--ease-sip-out);
-
-    @media (width >= 64rem) {
-      padding: 0.3rem 0.7rem;
-      border-color: var(--color-acero);
-    }
-  }
-
-  .copy:hover {
-    border-color: var(--surface-fg);
-
-    @media (width >= 64rem) {
-      background-color: var(--color-noche);
-      color: var(--color-hielo);
-    }
-  }
-
   /* ---------- Formulario ---------- */
   .form {
     display: grid;

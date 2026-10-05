@@ -1,13 +1,9 @@
-import { hasLocale } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { heroIndustries } from "@/content/industries";
-import { localeTag, routing } from "@/i18n/routing";
 import { site, waLink } from "@/lib/site";
 import { ContactForm, type ContactFormText } from "./ContactForm";
-import { CopyEmail } from "./CopyEmail";
 import styles from "./contact.module.css";
 import { contactFields, type IndustryOption } from "./schema";
-import { TijuanaTime } from "./TijuanaTime";
 
 interface ContactSectionProps {
   /** h1 en la página de contacto, h2 al final de la home. */
@@ -24,7 +20,7 @@ const FIELD_KEYS = {
 } as const;
 
 /**
- * Contacto: titular, canales directos (correo que se copia, WhatsApp, hora en Tijuana) y el
+ * Contacto: titular, canales directos (correo y WhatsApp) y el
  * formulario. Superficie clara: el contenido de lectura vive en superficies claras.
  */
 export async function ContactSection({ headingLevel = 2 }: ContactSectionProps) {
@@ -83,7 +79,6 @@ export async function ContactSection({ headingLevel = 2 }: ContactSectionProps) 
               <dt>{t("emailLabel")}</dt>
               <dd className={styles.channelValue}>
                 <a href={`mailto:${site.email}`}>{site.email}</a>
-                <CopyEmail email={site.email} copy={t("copy")} copied={t("copied")} />
               </dd>
             </div>
             <div className={styles.channel}>
@@ -92,16 +87,6 @@ export async function ContactSection({ headingLevel = 2 }: ContactSectionProps) 
                 <a href={waLink(whatsapp("message"))} rel="noopener">
                   {site.whatsapp.display}
                 </a>
-              </dd>
-            </div>
-            <div className={styles.channel}>
-              <dt>{t("timeLabel")}</dt>
-              <dd className={styles.channelValue}>
-                <TijuanaTime
-                  locale={hasLocale(routing.locales, locale) ? localeTag[locale].lang : locale}
-                  timeZone={site.timeZone}
-                  yourTime={t.raw("yourTime") as string}
-                />
               </dd>
             </div>
           </dl>

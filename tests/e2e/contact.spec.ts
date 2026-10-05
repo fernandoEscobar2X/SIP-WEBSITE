@@ -2,6 +2,27 @@ import { expect, test } from "@playwright/test";
 import { isDesktop } from "./form";
 
 test.describe("contacto", () => {
+  test("publica el correo de Humberto en ambos idiomas", async ({ page }) => {
+    for (const path of ["/es/contacto", "/en/contact"]) {
+      await page.goto(path);
+      await expect(page.locator('#contacto a[href="mailto:humberto@sipintegrales.com"]')).toBeVisible();
+      await expect(page.getByText("sistemas@sipintegrales.com", { exact: true })).toHaveCount(0);
+      await expect(page.getByRole("button", { name: /Copiar correo|Copy email/ })).toHaveCount(0);
+      await expect(page.getByText(/Hora en Tijuana|Time in Tijuana/)).toHaveCount(0);
+    }
+  });
+
+  test("muestra un fallo real del envío y permite reintentar", async ({ page }) => {
+    await page.route("**/__forms.html", (route) => route.fulfill({ status: 503, body: "" }));
+    await page.goto("/es/contacto");
+    const form = page.getByRole("form", { name: "Formulario de contacto" });
+    await form.getByLabel("Nombre").fill("Ana Prueba");
+    await form.getByLabel("Correo").fill("ana@example.com");
+    await form.getByLabel("¿Qué pasa en tu operación?").fill("Queremos conocer sus servicios.");
+    await form.getByRole("button", { name: "Enviar mensaje" }).click();
+    await expect(form.getByRole("status")).toHaveText(/humberto@sipintegrales\.com/);
+    await expect(form.getByRole("button", { name: "Enviar mensaje" })).toBeEnabled();
+  });
   test("valida en el idioma del visitante y lleva el foco al primer error", async ({ page }) => {
     await page.goto("/es/contacto");
     const form = page.getByRole("form", { name: "Formulario de contacto" });

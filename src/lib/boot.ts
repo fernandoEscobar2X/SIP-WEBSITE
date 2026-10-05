@@ -1,5 +1,5 @@
 /**
- * Arranque: corre en <head> antes del primer pintado y marca en <html>
+ * Arranque: corre antes del contenido visible y del primer pintado y marca en <html>
  * - `data-daypart`: "dia" o "noche" según la hora local del visitante (el hero elige su foto);
  * - `data-motion="on"`: hay JavaScript y el visitante no pidió reducir el movimiento (las
  *   entradas animadas parten de su estado inicial sin parpadeo; sin JS todo se ve completo).
