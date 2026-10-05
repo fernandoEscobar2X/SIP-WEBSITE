@@ -18,9 +18,11 @@ import lighthouse from "lighthouse";
 import desktopConfig from "lighthouse/core/config/desktop-config.js";
 
 const PORT = 4321;
-const ORIGIN = `http://localhost:${PORT}`;
 const args = process.argv.slice(2);
-const skipBuild = args.includes("--skip-build");
+const remoteOrigin = args.find((arg) => arg.startsWith("--origin="))?.slice(9);
+const ORIGIN = remoteOrigin ?? `http://localhost:${PORT}`;
+const skipBuild = Boolean(remoteOrigin) || args.includes("--skip-build");
+const formFactors = args.includes("--desktop-only") ? ["desktop"] : ["mobile", "desktop"];
 // Rutas sin barra inicial ("es,en/services"): así ninguna shell las reinterpreta como rutas de disco.
 const only = args
   .find((a) => a.startsWith("--only="))
@@ -43,8 +45,10 @@ if (!skipBuild) {
   if (build.status !== 0) process.exit(build.status ?? 1);
 }
 
-const server = spawn(process.execPath, ["scripts/serve-static.mjs", String(PORT)], { stdio: "ignore" });
-await new Promise((r) => setTimeout(r, 800));
+const server = remoteOrigin
+  ? null
+  : spawn(process.execPath, ["scripts/serve-static.mjs", String(PORT)], { stdio: "ignore" });
+if (server) await new Promise((r) => setTimeout(r, 800));
 
 const outDir = resolve(".lighthouse");
 mkdirSync(outDir, { recursive: true });
@@ -53,7 +57,7 @@ const chrome = await chromeLauncher.launch({ chromeFlags: ["--headless=new", "--
 const failures = [];
 const summary = [];
 try {
-  for (const formFactor of ["mobile", "desktop"]) {
+  for (const formFactor of formFactors) {
     for (const page of PAGES) {
       // 404: se audita aparte porque su estado HTTP es 404 por diseño (SEO lo marca).
       const isNotFound = page.endsWith("/404");
@@ -66,6 +70,7 @@ try {
       const scores = Object.fromEntries(Object.entries(lhr.categories).map(([k, v]) => [k, v.score]));
       const name = `${formFactor}${page.replaceAll("/", "_")}`;
       writeFileSync(resolve(outDir, `${name}.html`), result.report);
+      writeFileSync(resolve(outDir, `${name}.json`), JSON.stringify(lhr));
       summary.push({ formFactor, page, scores });
 
       const line = Object.entries(scores)
@@ -95,7 +100,7 @@ try {
   }
 } finally {
   await chrome.kill();
-  server.kill();
+  server?.kill();
 }
 
 writeFileSync(resolve(outDir, "summary.json"), JSON.stringify(summary, null, 2));

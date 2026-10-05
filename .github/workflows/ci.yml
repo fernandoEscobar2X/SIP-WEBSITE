@@ -43,7 +43,8 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      # Playwright construye con SITE_URL local y prueba desktop + móvil (Chrome del runner).
+      - run: npx playwright install --with-deps chrome msedge firefox webkit
+      # Playwright construye y verifica todos los motores y tamaños configurados.
       - run: npx playwright test
       # Reutiliza ese build: umbrales del plan (móvil ≥ 85; resto 100).
       - run: npm run lighthouse -- --skip-build

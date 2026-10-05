@@ -44,6 +44,11 @@ export default defineConfig({
       metadata: { form: "desktop" },
       use: { ...devices["Desktop Safari"], viewport: { width: 1440, height: 900 } },
     },
+    {
+      name: "desktop-firefox",
+      metadata: { form: "desktop" },
+      use: { ...devices["Desktop Firefox"], viewport: { width: 1440, height: 900 } },
+    },
     { name: "iphone", metadata: { form: "phone" }, use: { ...devices["iPhone 17"] } },
     { name: "ipad", metadata: { form: "tablet" }, use: { ...devices["iPad (gen 11)"] } },
     { name: "android", metadata: { form: "phone" }, use: { ...devices["Galaxy S24"], channel: "chrome" } },

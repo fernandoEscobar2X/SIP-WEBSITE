@@ -5,6 +5,7 @@ import { locale as rootLocale } from "next/root-params";
 import Script from "next/script";
 import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import { DaypartSync } from "@/components/DaypartSync";
 import { InlineScript } from "@/components/InlineScript";
 import { Footer } from "@/components/layout/Footer";
 import { SiteChrome } from "@/components/layout/SiteChrome";
@@ -62,6 +63,7 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
         <InlineScript html={bootScript} />
       </head>
       <body>
+        <DaypartSync />
         <script
           type="application/ld+json"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD serializado y escapado en serializeJsonLd

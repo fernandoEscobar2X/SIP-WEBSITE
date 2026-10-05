@@ -16,6 +16,8 @@ test.describe("seguridad", () => {
 
   test("la CSP no bloquea nada del sitio", async ({ page }) => {
     const violations: string[] = [];
+    const errors: string[] = [];
+    page.on("pageerror", (error) => errors.push(error.message));
     page.on("console", (message) => {
       if (message.type() === "error" && /Content Security Policy|Permissions-Policy/i.test(message.text())) {
         violations.push(message.text());
@@ -38,6 +40,7 @@ test.describe("seguridad", () => {
       await page.waitForLoadState("networkidle");
     }
     expect(violations).toEqual([]);
+    expect(errors).toEqual([]);
   });
 
   test("la raíz lleva al idioma del navegador", async ({ browser }) => {
