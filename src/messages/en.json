@@ -356,8 +356,8 @@
       "optional": "optional",
       "submit": "Send message",
       "sending": "Sending…",
-      "sentTitle": "We got your message.",
-      "sent": "We will write to {email} from Tijuana.",
+      "sentTitle": "Request submitted.",
+      "sent": "SIP's team will review your message. You can contact us directly at {email}.",
       "failed": "We couldn’t send it. Write to {email} or on WhatsApp.",
       "summary": "Please check the highlighted fields.",
       "errors": {

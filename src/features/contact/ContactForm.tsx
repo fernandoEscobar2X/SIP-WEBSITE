@@ -28,7 +28,7 @@ export interface ContactFormText {
   readonly submit: string;
   readonly sending: string;
   readonly sentTitle: string;
-  /** Con `{email}` para el correo de quien escribe. */
+  /** Confirma recepción del formulario, no entrega de correo. `{email}` es el correo de SIP. */
   readonly sent: string;
   /** Con `{email}` para el correo de SIP. */
   readonly failed: string;
@@ -44,7 +44,7 @@ interface ContactFormProps {
   readonly text: ContactFormText;
 }
 
-type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent"; email: string } | { kind: "failed" };
+type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "failed" };
 
 const OPTIONAL = new Set<ContactField>(["empresa", "telefono", "industria"]);
 
@@ -102,7 +102,8 @@ export function ContactForm({ locale, email, text }: ContactFormProps) {
         redirect: "error",
       });
       if (!response.ok) throw new Error(`Netlify Forms respondió ${response.status}`);
-      setStatus({ kind: "sent", email: result.data.correo });
+      // El 200 confirma recepción por Netlify; la notificación se procesa en un evento separado.
+      setStatus({ kind: "sent" });
       return { status: "sent" };
     } catch {
       setStatus({ kind: "failed" });
@@ -134,7 +135,7 @@ export function ContactForm({ locale, email, text }: ContactFormProps) {
     return (
       <div ref={statusRef} className={styles.sent} tabIndex={-1} role="status">
         <p className={styles.sentTitle}>{text.sentTitle}</p>
-        <p>{text.sent.replace("{email}", status.email)}</p>
+        <p>{text.sent.replace("{email}", email)}</p>
       </div>
     );
   }

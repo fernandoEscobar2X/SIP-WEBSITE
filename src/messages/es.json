@@ -356,8 +356,8 @@
       "optional": "opcional",
       "submit": "Enviar mensaje",
       "sending": "Enviando…",
-      "sentTitle": "Recibimos tu mensaje.",
-      "sent": "Te escribimos a {email} desde Tijuana.",
+      "sentTitle": "Solicitud registrada.",
+      "sent": "El equipo de SIP revisará tu mensaje. Puedes contactarnos directamente en {email}.",
       "failed": "No pudimos enviarlo. Escríbenos a {email} o por WhatsApp.",
       "summary": "Revisa los campos marcados.",
       "errors": {

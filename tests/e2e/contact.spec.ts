@@ -45,7 +45,10 @@ test.describe("contacto", () => {
     await form.getByLabel("Email").fill("ana@empresa.mx");
     await form.getByLabel("What is happening in your operation?").fill("We track line stops on paper.");
     await form.getByRole("button", { name: "Send message" }).click();
-    await expect(page.getByRole("status").filter({ hasText: "We got your message." })).toBeFocused();
+    const confirmation = page.getByRole("status").filter({ hasText: "Request submitted." });
+    await expect(confirmation).toBeFocused();
+    await expect(confirmation).toContainText("humberto@sipintegrales.com");
+    await expect(confirmation).not.toContainText("ana@empresa.mx");
     const sent = new URLSearchParams(body);
     expect(sent.get("form-name")).toBe("contacto");
     expect(sent.get("correo")).toBe("ana@empresa.mx");
@@ -68,7 +71,10 @@ test.describe("contacto", () => {
     await form.getByLabel("¿Qué pasa en tu operación?").fill("Registramos los paros en papel.");
     await expect(form.getByText("Este campo es necesario.")).toHaveCount(0);
     await submit.click();
-    await expect(page.getByRole("status").filter({ hasText: "Recibimos tu mensaje." })).toBeVisible();
+    const confirmation = page.getByRole("status").filter({ hasText: "Solicitud registrada." });
+    await expect(confirmation).toBeVisible();
+    await expect(confirmation).toContainText("humberto@sipintegrales.com");
+    await expect(confirmation).not.toContainText("ana@empresa.mx");
   });
 
   test("se declara como herramienta para agentes (WebMCP)", async ({ page }) => {
