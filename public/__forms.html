@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Formularios</title>
+  </head>
+  <body>
+    <!--
+      Solo para Netlify Forms: al publicar, Netlify detecta este formulario y acepta los envíos
+      con form-name="contacto". El formulario visible (src/features/contact) envía aquí por fetch
+      y, sin JavaScript, por POST normal. Los campos deben coincidir con src/features/contact/schema.ts.
+    -->
+    <form name="contacto" method="post" data-netlify="true" netlify-honeypot="sitio-web" hidden>
+      <input type="text" name="sitio-web" />
+      <input type="text" name="nombre" />
+      <input type="text" name="empresa" />
+      <input type="email" name="correo" />
+      <input type="tel" name="telefono" />
+      <select name="industria">
+        <option value=""></option>
+        <option value="manufactura"></option>
+        <option value="logistica"></option>
+        <option value="construccion"></option>
+        <option value="agroindustria"></option>
+        <option value="energia"></option>
+        <option value="otra"></option>
+      </select>
+      <textarea name="mensaje"></textarea>
+      <input type="hidden" name="idioma" />
+    </form>
+  </body>
+</html>

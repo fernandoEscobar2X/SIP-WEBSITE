@@ -1,0 +1,353 @@
+@layer components {
+  /* ---------- Contenedor: la imagen ocupa todo; el texto se apoya abajo a la izquierda ---------- */
+  .hero {
+    /* Tope de espera por la hidratación antes de que la red de seguridad CSS revele el texto. */
+    --entrance-fallback: 1.2s;
+
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100svh;
+
+    /* En móvil el dock va pegado al borde inferior: se reserva su altura y un respiro. */
+    padding-block: 7rem calc(var(--dock-size) + 1.25rem + env(safe-area-inset-bottom));
+    overflow: clip;
+    background-color: var(--color-noche);
+    color: var(--color-hielo);
+
+    @media (width >= 64rem) {
+      padding-block-end: 2.5rem;
+    }
+  }
+
+  /* ---------- Capa de imagen (absoluta respecto al hero) ---------- */
+  .media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    touch-action: pan-y;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Estados del panel (HeroCarousel): el activo se ve; el entrante pasa encima con el corte;
+     los preparados ya tienen su foto cargada pero no se pintan. */
+  .slide[data-state="active"] {
+    z-index: 1;
+  }
+
+  .slide[data-state="incoming"] {
+    z-index: 2;
+  }
+
+  .slide[data-state="prepared"] {
+    visibility: hidden;
+  }
+
+  /* Día / noche: lo decide el script de arranque antes del primer pintado. Sin JS, noche. */
+  .variant[data-daypart="dia"],
+  :global(:root[data-daypart="dia"]) .variant[data-daypart="noche"] {
+    display: none;
+  }
+
+  :global(:root[data-daypart="dia"]) .variant[data-daypart="dia"] {
+    display: block;
+  }
+
+  .picture {
+    position: absolute;
+    inset: 0;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Sombra de lectura: arriba para el header, abajo e izquierda para el texto. */
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-noche) 70%, transparent), transparent 22%),
+      linear-gradient(
+        to top,
+        color-mix(in oklab, var(--color-noche) 96%, transparent) 0%,
+        color-mix(in oklab, var(--color-noche) 82%, transparent) 42%,
+        color-mix(in oklab, var(--color-noche) 40%, transparent) 62%,
+        transparent 78%
+      );
+
+    @media (width >= 64rem) {
+      background:
+        linear-gradient(to bottom, color-mix(in oklab, var(--color-noche) 70%, transparent), transparent 24%),
+        linear-gradient(to right, color-mix(in oklab, var(--color-noche) 58%, transparent), transparent 58%),
+        linear-gradient(
+          to top,
+          color-mix(in oklab, var(--color-noche) 94%, transparent) 0%,
+          color-mix(in oklab, var(--color-noche) 62%, transparent) 38%,
+          transparent 66%
+        );
+    }
+  }
+
+  /* De día la sombra es más ligera y en marino (menos saturado que el noche): sostiene la
+     lectura sin teñir de noche la foto. */
+  :global(:root[data-daypart="dia"]) .scrim {
+    background:
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-marino) 58%, transparent), transparent 22%),
+      linear-gradient(
+        to top,
+        color-mix(in oklab, var(--color-noche) 92%, transparent) 0%,
+        color-mix(in oklab, var(--color-marino) 74%, transparent) 42%,
+        color-mix(in oklab, var(--color-marino) 30%, transparent) 62%,
+        transparent 76%
+      );
+
+    @media (width >= 64rem) {
+      background:
+        linear-gradient(to bottom, color-mix(in oklab, var(--color-marino) 55%, transparent), transparent 20%),
+        linear-gradient(to right, color-mix(in oklab, var(--color-marino) 42%, transparent), transparent 46%),
+        linear-gradient(
+          to top,
+          color-mix(in oklab, var(--color-noche) 86%, transparent) 0%,
+          color-mix(in oklab, var(--color-marino) 50%, transparent) 34%,
+          transparent 58%
+        );
+    }
+  }
+
+  /* El filo del corte: una línea en azul señal con la inclinación de la I. */
+  .edge {
+    position: absolute;
+    z-index: 3;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 2px;
+    background-color: var(--color-senal);
+    transform-origin: top left;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* ---------- Texto ---------- */
+  .copy {
+    display: grid;
+    gap: 1.75rem;
+
+    @media (width >= 64rem) {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+      align-items: end;
+      column-gap: var(--spacing-gutter);
+    }
+  }
+
+  /* Tipografía propia del hero (pieza de dirección de arte): dos líneas en desktop, compacta en móvil. */
+  .title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 1rem + 6.4vw, 3.6rem);
+    line-height: 0.98;
+    font-weight: var(--font-weight-black);
+    font-stretch: 108%;
+    letter-spacing: var(--tracking-tight);
+    text-wrap: balance;
+
+    @media (width >= 48rem) {
+      font-size: clamp(3.6rem, 0.4rem + 6.2vw, 8.75rem);
+      line-height: 0.94;
+      font-stretch: 116%;
+    }
+  }
+
+  .aside {
+    display: grid;
+    justify-items: start;
+    gap: 1.75rem;
+    max-width: 34ch;
+
+    @media (width >= 64rem) {
+      padding-block-end: 0.6rem;
+    }
+  }
+
+  .lead {
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    text-wrap: pretty;
+
+    @media (width >= 48rem) {
+      font-size: var(--text-lg);
+      line-height: var(--text-lg--line-height);
+    }
+  }
+
+  /* ---------- Entrada ----------
+     Con JavaScript y sin movimiento reducido (data-motion="on"), el texto espera en su estado
+     inicial: las líneas del titular dentro de su máscara y los bloques transparentes. La foto (el
+     LCP) se ve desde el primer pintado. El script en línea del hero (entrance.ts) cancela esta red
+     de seguridad y corre la coreografía en cuanto el navegador lee el hero; si ese script no
+     corriera, esta misma animación CSS revela todo a los --entrance-fallback. */
+  .line {
+    display: block;
+    overflow: hidden;
+
+    /* Margen para acentos y descendentes dentro de la máscara. */
+    padding-block: 0.12em;
+    margin-block: -0.12em;
+  }
+
+  .lineInner {
+    display: block;
+  }
+
+  :global(:root[data-motion="on"]) .lineInner {
+    animation: line-in var(--duration-slow) var(--ease-sip-out) var(--entrance-fallback) both;
+  }
+
+  :global(:root[data-motion="on"]) .reveal {
+    animation: reveal-in var(--duration-slow) var(--ease-sip-out) var(--entrance-fallback) both;
+  }
+
+  @keyframes line-in {
+    from {
+      transform: translateY(115%);
+    }
+  }
+
+  /* Nunca desde 0: el párrafo del hero es el LCP en móvil. */
+  @keyframes reveal-in {
+    from {
+      opacity: 0.1;
+      transform: translateY(1.25rem);
+    }
+  }
+
+  /* La capa de imagen ocupa todo el hero: al escalarla se vuelve el contenedor de los paneles. */
+  .stage {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* ---------- Controles del recorrido ---------- */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 0.75rem;
+    margin-block-start: clamp(2rem, 1rem + 3vw, 3.25rem);
+
+    @media (width >= 64rem) {
+      flex-wrap: nowrap;
+      gap: 1.25rem;
+      padding-inline-end: var(--dock-clearance);
+    }
+  }
+
+  .measure {
+    order: -1;
+    flex-basis: 100%;
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    max-width: 36ch;
+    min-height: calc(var(--text-base--line-height) * 2em);
+    animation: measure-in var(--duration-slow) var(--ease-sip-out) both;
+
+    @media (width >= 64rem) {
+      order: 0;
+      flex: 1 1 auto;
+      margin-inline-start: auto;
+      text-align: end;
+      min-height: 0;
+    }
+  }
+
+  @keyframes measure-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+  }
+
+  /* En móvil las pills se desplazan; el borde derecho se desvanece para indicar que hay más. */
+  .tabs {
+    display: flex;
+    gap: 0.375rem;
+    min-width: 0;
+    flex: 1 1 0;
+    padding-inline-end: 2.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+    mask-image: linear-gradient(
+      to right,
+      var(--color-noche) calc(100% - 2.5rem),
+      transparent
+    ); /* la máscara solo usa el alfa */
+
+    @media (width >= 64rem) {
+      flex: none;
+      padding-inline-end: 0;
+      overflow: visible;
+      mask-image: none;
+    }
+  }
+
+  .tab {
+    --tab-height: 2.5rem;
+    --tab-cut: calc(var(--tab-height) * tan(var(--angle-corte)));
+
+    position: relative;
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    height: var(--tab-height);
+    padding-inline: 1.1rem;
+    border: 0;
+    background-color: color-mix(in oklab, var(--color-noche) 62%, transparent);
+    color: var(--color-hielo);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    font-stretch: 88%;
+    cursor: pointer;
+    clip-path: polygon(var(--tab-cut) 0, 100% 0, calc(100% - var(--tab-cut)) 100%, 0 100%);
+    transition:
+      background-color var(--duration-fast) var(--ease-sip-out),
+      color var(--duration-fast) var(--ease-sip-out);
+  }
+
+  .tab:hover {
+    background-color: color-mix(in oklab, var(--color-marino) 85%, transparent);
+  }
+
+  .tab[aria-selected="true"] {
+    background-color: var(--color-hielo);
+    color: var(--color-noche);
+  }
+
+  /* Progreso del recorrido: la pill activa se llena mientras corre su tiempo. */
+  .tab[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 3px;
+    background-color: var(--color-senal-600);
+    transform: scaleX(var(--progress, 0));
+    transform-origin: left;
+  }
+
+  /* El recorte a 6° cortaría el contorno exterior: el foco se dibuja por dentro. */
+  .tab:focus-visible {
+    outline: 2px solid var(--color-senal);
+    outline-offset: -5px;
+  }
+}

@@ -1,0 +1,28 @@
+@layer components {
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-transition);
+    overflow: clip;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  /* Panel inclinado al ángulo de la I; se extiende fuera del viewport para cubrir las esquinas */
+  .panel {
+    position: absolute;
+    inset: 0 -25vw;
+    background-color: var(--color-noche);
+    transform: translateX(110%) skewX(calc(var(--angle-corte) * -1));
+    will-change: transform;
+  }
+
+  /* Canto de señal: la I azul del logo como borde de ataque */
+  .edge {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: clamp(0.5rem, 0.3rem + 0.6vw, 1.1rem);
+    background-color: var(--color-senal);
+  }
+}

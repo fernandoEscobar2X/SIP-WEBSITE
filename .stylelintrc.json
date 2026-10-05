@@ -1,0 +1,81 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "color-no-hex": [
+      true,
+      {
+        "message": "Usa un token de color (src/styles/tokens.css), no un hex suelto."
+      }
+    ],
+    "color-named": [
+      "never",
+      {
+        "message": "Usa un token de color, no un nombre de color."
+      }
+    ],
+    "function-disallowed-list": [
+      ["cubic-bezier", "rgb", "rgba", "hsl", "hsla"],
+      {
+        "message": "Usa los tokens de easing y color de src/styles/tokens.css."
+      }
+    ],
+    "selector-class-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "Clases de CSS Modules en camelCase (se usan como styles.nombre)."
+      }
+    ],
+    "custom-property-pattern": null,
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "theme",
+          "utility",
+          "custom-variant",
+          "variant",
+          "apply",
+          "source",
+          "reference",
+          "plugin",
+          "config"
+        ]
+      }
+    ],
+    "at-rule-no-deprecated": [
+      true,
+      {
+        "ignoreAtRules": ["apply"]
+      }
+    ],
+    "import-notation": "string",
+    "declaration-property-value-no-unknown": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/styles/tokens.css"],
+      "rules": {
+        "color-no-hex": null,
+        "function-disallowed-list": null
+      }
+    },
+    {
+      "files": ["src/styles/globals.css"],
+      "rules": {
+        "selector-class-pattern": null,
+        "no-invalid-position-declaration": [
+          true,
+          {
+            "ignoreAtRules": ["utility"]
+          }
+        ]
+      }
+    }
+  ]
+}

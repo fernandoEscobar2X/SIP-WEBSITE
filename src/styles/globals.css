@@ -1,0 +1,188 @@
+/*
+ * Orden de cascada: theme → base → components → utilities.
+ * Los CSS Modules de cada pieza se escriben dentro de @layer components para
+ * que las utilidades de layout puedan ajustarlos sin guerras de especificidad.
+ */
+@import "tailwindcss";
+@import "./tokens.css";
+@import "lenis/dist/lenis.css" layer(base);
+
+/* Superficies: cada sección declara su fondo y hereda colores semánticos con contraste AA */
+@layer base {
+  /* Tono oscuro (noche, marino) y claro (hielo, blanco). La I del logo sigue a marca-sip:
+     azul digital sobre oscuro, degradado Pacífico sobre claro. */
+  :root,
+  [data-surface="noche"],
+  [data-surface="marino"],
+  [data-tone="dark"] {
+    --surface-fg: var(--color-hielo);
+    --surface-muted: var(--color-bruma);
+    --surface-accent: var(--color-senal);
+    --surface-line: color-mix(in oklab, var(--color-hielo) 16%, transparent);
+    --logo-i-top: var(--color-senal);
+    --logo-i-bottom: var(--color-senal-600);
+
+    color-scheme: dark;
+  }
+
+  [data-surface="hielo"],
+  [data-surface="blanco"],
+  [data-tone="light"] {
+    --surface-fg: var(--color-marino);
+    --surface-muted: var(--color-acero);
+    --surface-accent: var(--color-pacifico-500);
+    --surface-line: color-mix(in oklab, var(--color-marino) 16%, transparent);
+    --logo-i-top: var(--color-pacifico-400);
+    --logo-i-bottom: var(--color-pacifico-600);
+
+    color-scheme: light;
+  }
+
+  :root,
+  [data-surface="noche"] {
+    --surface-bg: var(--color-noche);
+  }
+
+  [data-surface="marino"] {
+    --surface-bg: var(--color-marino);
+    --surface-accent: var(--color-hielo);
+  }
+
+  [data-surface="hielo"] {
+    --surface-bg: var(--color-hielo);
+  }
+
+  [data-surface="blanco"] {
+    --surface-bg: var(--color-blanco);
+  }
+
+  [data-surface] {
+    background-color: var(--surface-bg);
+    color: var(--surface-fg);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-noche);
+    color: var(--color-hielo);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
+
+    /* En móvil, lo que se desplaza a la vista (foco con teclado, anclas) no queda debajo del dock
+       fijo (WCAG 2.4.11: el foco no se tapa). */
+    @media (width < 64rem) {
+      scroll-padding-block-end: calc(var(--dock-size) + env(safe-area-inset-bottom));
+    }
+  }
+
+  body {
+    min-height: 100svh;
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  ::selection {
+    background-color: var(--color-senal);
+    color: var(--color-noche);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--surface-accent);
+    outline-offset: 3px;
+  }
+
+  /* Movimiento reducido desde el sistema de tokens: toda transición CSS usa
+     --duration-*, así que basta con llevarlas a 0. GSAP lo resuelve con matchMedia. */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --duration-fast: 0ms;
+      --duration-base: 0ms;
+      --duration-slow: 0ms;
+    }
+  }
+}
+
+/* Estilos tipográficos de la marca como utilidades (una sola definición, reutilizable) */
+@utility type-display {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  font-weight: var(--font-weight-black);
+  font-stretch: 112%;
+  letter-spacing: var(--tracking-tight);
+
+  @media (width >= 48rem) {
+    font-stretch: 122%;
+  }
+}
+
+@utility type-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  line-height: var(--text-3xl--line-height);
+  font-weight: var(--font-weight-bold);
+  font-stretch: 104%;
+  letter-spacing: var(--tracking-tight);
+
+  @media (width >= 48rem) {
+    font-stretch: 114%;
+  }
+}
+
+@utility type-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--text-xl--line-height);
+  font-weight: var(--font-weight-semibold);
+  font-stretch: 100%;
+}
+
+@utility type-label {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  font-weight: var(--font-weight-medium);
+  font-stretch: 84%;
+}
+
+@utility type-lead {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  line-height: var(--text-lg--line-height);
+  font-weight: var(--font-weight-regular);
+}
+
+@utility container-site {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+  max-width: 120rem;
+}

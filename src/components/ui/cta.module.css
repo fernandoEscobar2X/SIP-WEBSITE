@@ -1,0 +1,39 @@
+@layer components {
+  /* CTA de la marca: el corte de la I (6°) en el borde izquierdo. */
+  .cta {
+    --cta-height: 2.75rem;
+
+    display: inline-flex;
+    align-items: center;
+    height: var(--cta-height);
+    padding-inline: calc(var(--cta-height) * 0.55) calc(var(--cta-height) * 0.44);
+    background-color: var(--color-senal);
+    color: var(--color-noche);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    font-stretch: 92%;
+    text-decoration: none;
+
+    /* El borde izquierdo lleva exactamente la inclinación de la I. */
+    clip-path: polygon(calc(var(--cta-height) * tan(var(--angle-corte))) 0, 100% 0, 100% 100%, 0 100%);
+    transition:
+      background-color var(--duration-fast) var(--ease-sip-out),
+      color var(--duration-fast) var(--ease-sip-out);
+  }
+
+  /* Grande solo con espacio: en móvil conserva la altura táctil estándar. */
+  .large {
+    @media (width >= 48rem) {
+      --cta-height: 3.5rem;
+
+      font-size: var(--text-base);
+    }
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    background-color: var(--surface-fg);
+    color: var(--cta-hover-fg, var(--color-noche));
+  }
+}

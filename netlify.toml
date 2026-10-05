@@ -1,0 +1,35 @@
+# Sitio 100 % estático (next build con output: "export" → ./out).
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# "/" según el idioma del navegador. Inglés si es su primera preferencia; si no, español.
+[[redirects]]
+  from = "/"
+  to = "/en"
+  status = 302
+  force = true
+  conditions = { Language = ["en"] }
+
+[[redirects]]
+  from = "/"
+  to = "/es"
+  status = 302
+  force = true
+
+# 404 por idioma (solo aplica si no existe un archivo en esa ruta).
+[[redirects]]
+  from = "/en/*"
+  to = "/en/404"
+  status = 404
+
+[[redirects]]
+  from = "/*"
+  to = "/es/404"
+  status = 404
+
+# Cabeceras (seguridad y caché): las genera el prebuild en out/_headers desde src/lib/security.ts,
+# la misma fuente que aplica el servidor local (scripts/serve-static.mjs).

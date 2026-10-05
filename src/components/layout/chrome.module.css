@@ -1,0 +1,342 @@
+@layer components {
+  /* ---------- Salto al contenido ---------- */
+  .skip {
+    position: fixed;
+    inset-block-start: 0.75rem;
+    inset-inline-start: 0.75rem;
+    z-index: var(--z-transition);
+    padding: 0.75rem 1rem;
+    background-color: var(--color-hielo);
+    color: var(--color-marino);
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-semibold);
+    transform: translateY(-200%);
+  }
+
+  .skip:focus-visible {
+    transform: none;
+  }
+
+  /* ---------- Header: el tono (data-tone) lo decide la superficie que tiene debajo ---------- */
+  .header {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-start: 0;
+    z-index: var(--z-header);
+    color: var(--surface-fg);
+    transition:
+      transform var(--duration-base) var(--ease-sip-out),
+      background-color var(--duration-base) var(--ease-sip-out),
+      color var(--duration-base) var(--ease-sip-out);
+  }
+
+  .header[data-tone="dark"] {
+    --header-bg: var(--color-noche);
+  }
+
+  .header[data-tone="light"] {
+    --header-bg: var(--color-hielo);
+  }
+
+  .header[data-scrolled="true"] {
+    background-color: var(--header-bg);
+    box-shadow: 0 1px 0 var(--surface-line);
+  }
+
+  .header[data-hidden="true"] {
+    transform: translateY(-100%);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    height: 4rem;
+
+    @media (width >= 64rem) {
+      height: 4.75rem;
+    }
+  }
+
+  .home {
+    display: block;
+    color: inherit;
+  }
+
+  .logo {
+    height: 1.35rem;
+    width: auto;
+
+    @media (width >= 64rem) {
+      height: 1.6rem;
+    }
+  }
+
+  .nav {
+    display: none;
+
+    @media (width >= 64rem) {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+    }
+  }
+
+  .navList {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navLink {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    font-stretch: 88%;
+    text-decoration: none;
+    background-image: linear-gradient(currentcolor, currentcolor);
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    padding-block: 0.3rem;
+    transition: background-size var(--duration-base) var(--ease-sip-out);
+  }
+
+  .navLink:hover,
+  .navLink:focus-visible,
+  .navLink[aria-current="page"] {
+    background-size: 100% 1px;
+  }
+
+  .lang {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    font-stretch: 88%;
+    color: var(--surface-muted);
+    text-decoration: none;
+  }
+
+  .lang:hover,
+  .lang:focus-visible {
+    color: var(--surface-fg);
+  }
+
+  /* El CTA (componente Cta) invierte al pasar el cursor hacia el fondo del header. */
+  .cta {
+    --cta-hover-fg: var(--header-bg);
+  }
+
+  .mobileLang {
+    @media (width >= 64rem) {
+      display: none;
+    }
+  }
+
+  /* ---------- Dock móvil (zona del pulgar) ---------- */
+  .dock {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: var(--z-dock);
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    height: calc(var(--dock-size) + env(safe-area-inset-bottom));
+    padding-block-end: env(safe-area-inset-bottom);
+    background-color: var(--color-noche);
+    border-block-start: 1px solid var(--surface-line);
+
+    @media (width >= 64rem) {
+      display: none;
+    }
+  }
+
+  .dockButton {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-inline: var(--spacing-gutter);
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-semibold);
+    font-stretch: 90%;
+    color: var(--color-hielo);
+    background: none;
+    border: 0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .dockWhatsapp {
+    --glyph-i: var(--color-senal);
+  }
+
+  .dockGlyph {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .dockMark {
+    width: 0.28rem;
+    height: 1.1rem;
+    background-color: var(--color-senal);
+    transform: skewX(calc(var(--angle-corte) * -1));
+  }
+
+  /* ---------- Menú móvil (dialog nativo: foco atrapado y fondo inerte) ---------- */
+  .menu {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: var(--color-noche);
+    color: var(--color-hielo);
+  }
+
+  .menu::backdrop {
+    background-color: transparent;
+  }
+
+  .menuInner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2.5rem;
+    height: 100%;
+    padding: 5rem var(--spacing-gutter) calc(1.25rem + env(safe-area-inset-bottom));
+  }
+
+  .menuList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .menuLink {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: 1.05;
+    font-weight: var(--font-weight-bold);
+    font-stretch: 108%;
+    text-decoration: none;
+    padding-block: 0.3rem;
+  }
+
+  .menuMeta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block-start: 1.25rem;
+    border-block-start: 1px solid var(--surface-line);
+  }
+
+  .menuContact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: var(--text-sm);
+    color: var(--color-bruma);
+  }
+
+  .menuClose {
+    align-self: stretch;
+    height: 3.25rem;
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-semibold);
+    font-stretch: 90%;
+    color: var(--color-noche);
+    background-color: var(--color-hielo);
+    border: 0;
+    cursor: pointer;
+  }
+
+  /* ---------- Footer: reserva el espacio de los flotantes para que nunca tapen contenido ---------- */
+  .footer {
+    padding-block: clamp(4rem, 2rem + 6vw, 8rem) calc(var(--dock-clearance) + env(safe-area-inset-bottom));
+  }
+
+  .footerGrid {
+    display: grid;
+    gap: 3rem;
+
+    @media (width >= 64rem) {
+      grid-template-columns: 1.4fr 1fr;
+      align-items: end;
+    }
+  }
+
+  .footerStatement {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+    font-weight: var(--font-weight-bold);
+    font-stretch: 110%;
+    max-width: 16ch;
+  }
+
+  .footerCols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem 4rem;
+  }
+
+  .footerList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .footerLabel {
+    display: block;
+    color: var(--surface-muted);
+    font-size: var(--text-xs);
+    margin-block-end: 0.15rem;
+  }
+
+  .footerLink {
+    text-decoration: none;
+  }
+
+  .footerLink:hover,
+  .footerLink:focus-visible {
+    text-decoration: underline;
+  }
+
+  .footerBase {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-block-start: clamp(3rem, 2rem + 4vw, 6rem);
+    padding-block-start: 1.5rem;
+    border-block-start: 1px solid var(--surface-line);
+    color: var(--surface-muted);
+    font-size: var(--text-xs);
+  }
+
+  .footerLogo {
+    height: 1.25rem;
+    width: auto;
+    color: var(--surface-fg);
+  }
+}

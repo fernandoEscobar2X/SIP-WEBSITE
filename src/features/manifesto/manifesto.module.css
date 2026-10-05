@@ -1,0 +1,150 @@
+@layer components {
+  /* Móvil y tableta conservan las medidas originales del manifiesto (commit b6d2594); el
+     espaciado compacto y la placa son de desktop. */
+  .section {
+    padding-block: clamp(6rem, 3rem + 10vw, 14rem);
+
+    @media (width >= 64rem) {
+      padding-block: var(--spacing-section);
+    }
+  }
+
+  /* Desktop: el manifiesto ocupa la columna ancha y la placa con el CTA se apoya abajo a la
+     derecha. Móvil y tableta: solo el manifiesto (su diseño original, más compacto). */
+  .layout {
+    display: grid;
+
+    @media (width >= 64rem) {
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      align-items: end;
+      column-gap: clamp(3rem, 1rem + 5vw, 7rem);
+    }
+  }
+
+  .text {
+    margin: 0;
+    max-width: 22ch;
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 1rem + 3.6vw, 4.75rem);
+    line-height: 1.08;
+    font-weight: var(--font-weight-semibold);
+    font-stretch: 102%;
+    letter-spacing: var(--tracking-tight);
+    text-wrap: pretty;
+
+    @media (width >= 64rem) {
+      max-width: 28ch;
+      font-size: clamp(1.7rem, 1rem + 2.2vw, 3rem);
+      line-height: 1.12;
+    }
+  }
+
+  /* --lit va de 0 a 1 con el scroll. Acero y noche cumplen AA sobre hielo: el texto se lee
+     completo en cualquier punto. Sin JS o con movimiento reducido, todo parte encendido. */
+  .word {
+    --lit: 1;
+
+    color: color-mix(in oklab, var(--color-noche) calc(var(--lit) * 100%), var(--color-acero));
+  }
+
+  :global(:root[data-motion="on"]) .word {
+    --lit: 0;
+  }
+
+  .keyword {
+    color: color-mix(in oklab, var(--color-pacifico-600) calc(var(--lit) * 100%), var(--color-acero));
+    white-space: nowrap;
+  }
+
+  /* La gráfica ocupa su lugar desde el inicio (sin saltos de layout) y se descubre al encenderse. */
+  .datum {
+    display: inline-block;
+    margin-inline: 0.28em 0.1em;
+    font-family: var(--font-data);
+    font-size: 0.74em;
+    font-weight: var(--font-weight-medium);
+    font-stretch: 100%;
+    letter-spacing: 0;
+    color: var(--color-senal-600);
+    clip-path: inset(0 calc((1 - var(--lit)) * 100%) 0 0);
+  }
+
+  /* ---------- Placa de datos: como la placa de una máquina ---------- */
+  .aside {
+    display: none;
+
+    @media (width >= 64rem) {
+      display: grid;
+      justify-items: start;
+      gap: 2rem;
+    }
+  }
+
+  .plate {
+    --plate-rule: 1;
+
+    position: relative;
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  /* Filete superior grueso: se traza de izquierda a derecha al entrar en pantalla. */
+  .plate::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background-color: var(--color-noche);
+    transform: scaleX(var(--plate-rule));
+    transform-origin: left;
+  }
+
+  .plateHead {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    padding-block: 1rem 0.85rem;
+    border-block-end: 1px solid var(--surface-line);
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    font-stretch: 92%;
+    color: var(--surface-fg);
+  }
+
+  .plateLogo {
+    height: 0.9rem;
+    width: auto;
+    flex: none;
+  }
+
+  .plateRows {
+    margin: 0;
+  }
+
+  .plateRow {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: 0.8rem;
+    border-block-end: 1px solid var(--surface-line);
+
+    dt {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      line-height: 1.6;
+      font-weight: var(--font-weight-medium);
+      font-stretch: 84%;
+      color: var(--surface-muted);
+    }
+
+    dd {
+      min-width: 0;
+      margin: 0;
+      font-size: var(--text-sm);
+      line-height: var(--text-sm--line-height);
+      color: var(--surface-fg);
+    }
+  }
+}

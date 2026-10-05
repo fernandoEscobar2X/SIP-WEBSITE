@@ -1,0 +1,300 @@
+@layer components {
+  .section {
+    padding-block: var(--spacing-section);
+  }
+
+  /* Desktop: encabezado y marca grande fijos a la izquierda; el índice corre a la derecha. */
+  .layout {
+    display: grid;
+    gap: 1.75rem;
+
+    @media (width >= 64rem) {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: start;
+      column-gap: var(--spacing-gutter);
+    }
+  }
+
+  .aside {
+    display: grid;
+    justify-items: start;
+    gap: 1.25rem;
+
+    @media (width >= 64rem) {
+      position: sticky;
+      top: 7rem;
+      gap: 2rem;
+    }
+  }
+
+  .header {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 1.3rem + 2.6vw, 3.75rem);
+    line-height: 1;
+    font-weight: var(--font-weight-bold);
+    font-stretch: 106%;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .lead {
+    margin: 0;
+    max-width: 40ch;
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    color: var(--surface-muted);
+  }
+
+  /* La marca grande del servicio activo: solo con espacio y cursor (las filas ya llevan la suya). */
+  .featured {
+    display: none;
+
+    @media (width >= 64rem) {
+      display: block;
+      width: min(100%, 26rem);
+      padding-block: 1.25rem;
+      border-block: 1px solid var(--surface-line);
+    }
+  }
+
+  .featuredMark {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .more {
+    justify-self: start;
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    font-stretch: 92%;
+    color: var(--surface-fg);
+    text-decoration: underline;
+    text-decoration-color: var(--surface-line);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
+    transition: text-decoration-color var(--duration-fast) var(--ease-sip-out);
+  }
+
+  .desktopOnly {
+    @media (width < 64rem) {
+      display: none;
+    }
+  }
+
+  .mobileOnly {
+    @media (width >= 64rem) {
+      display: none;
+    }
+  }
+
+  .more:hover,
+  .more:focus-visible {
+    text-decoration-color: var(--surface-accent);
+  }
+
+  /* ---------- Índice ---------- */
+
+  /* Móvil: tarjetas deslizables (la home se mantiene corta). Desktop: filas de placa. */
+  .list {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(15rem, 78%);
+    gap: 0.75rem;
+    margin: 0;
+    margin-inline: calc(var(--spacing-gutter) * -1);
+    padding: 0 var(--spacing-gutter) 0.5rem;
+    list-style: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--spacing-gutter);
+    scrollbar-width: none;
+
+    @media (width >= 64rem) {
+      grid-auto-flow: row;
+      grid-auto-columns: auto;
+      gap: 0;
+      margin-inline: 0;
+      padding: 0;
+      overflow: visible;
+      scroll-snap-type: none;
+    }
+  }
+
+  .item {
+    scroll-snap-align: start;
+  }
+
+  .row {
+    --rule: 0;
+
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
+    height: 100%;
+    padding: 1.1rem 0 1.25rem;
+    border-block-start: 1px solid var(--surface-line);
+    color: var(--surface-fg);
+    text-decoration: none;
+
+    @media (width >= 64rem) {
+      grid-template-columns: minmax(0, 1fr) 7.5rem;
+      grid-template-areas:
+        "name mark"
+        "text mark";
+      gap: 0.3rem 2rem;
+      padding-block: 0.95rem 1.05rem;
+    }
+  }
+
+  /* Filete grueso de la fila activa, trazado de izquierda a derecha como el de la placa. */
+  .row::before {
+    content: "";
+    position: absolute;
+    inset: -1px 0 auto;
+    height: 3px;
+    background-color: var(--color-noche);
+    transform: scaleX(var(--rule));
+    transform-origin: left;
+    transition: transform var(--duration-base) var(--ease-sip-out);
+  }
+
+  .row[data-active] {
+    --rule: 1;
+  }
+
+  /* En móvil no hay fila activa: cada tarjeta lleva su filete completo. */
+  @media (width < 64rem) {
+    .row {
+      --rule: 1;
+    }
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    line-height: 1.15;
+    font-weight: var(--font-weight-semibold);
+    font-stretch: 90%;
+
+    @media (width >= 64rem) {
+      grid-area: name;
+      font-size: clamp(1.35rem, 0.9rem + 0.9vw, 1.75rem);
+    }
+  }
+
+  .text {
+    max-width: 46ch;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    color: var(--surface-muted);
+
+    @media (width >= 64rem) {
+      grid-area: text;
+    }
+  }
+
+  .rowMark {
+    order: -1;
+    width: 6.5rem;
+    height: auto;
+
+    @media (width >= 64rem) {
+      order: 0;
+      grid-area: mark;
+      align-self: center;
+      width: 100%;
+    }
+  }
+
+  .row:focus-visible {
+    outline-offset: 4px;
+  }
+
+  /* ---------- Marcas: la forma del dato de cada servicio ---------- */
+  .mark {
+    overflow: visible;
+  }
+
+  .markLine {
+    fill: none;
+    stroke: var(--color-pacifico-500);
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .markDot {
+    fill: var(--color-pacifico-500);
+  }
+
+  .markBlock {
+    fill: color-mix(in oklab, var(--color-pacifico-500) 16%, transparent);
+    stroke: var(--color-pacifico-500);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* La marca grande se redibuja al cambiar de servicio: el trazo avanza y las piezas llegan. */
+  .featuredMark .markLine {
+    stroke-width: 3.5;
+    stroke-dasharray: 1 1;
+    animation: draw var(--duration-slow) var(--ease-sip-out) both;
+  }
+
+  .featuredMark .markDot,
+  .featuredMark .markBlock {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: rise var(--duration-base) var(--ease-sip-out) both;
+  }
+
+  /* Desktop: las marcas de las filas en acero y la activa en azul. Móvil: todas en azul. */
+  @media (width >= 64rem) {
+    .rowMark .markLine,
+    .rowMark .markBlock {
+      stroke: var(--color-acero);
+      transition: stroke var(--duration-base) var(--ease-sip-out);
+    }
+
+    .rowMark .markDot {
+      fill: var(--color-acero);
+      transition: fill var(--duration-base) var(--ease-sip-out);
+    }
+
+    .row[data-active] .rowMark .markLine,
+    .row[data-active] .rowMark .markBlock {
+      stroke: var(--color-pacifico-500);
+    }
+
+    .row[data-active] .rowMark .markDot {
+      fill: var(--color-pacifico-500);
+    }
+  }
+
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: scaleY(0.2);
+    }
+  }
+}

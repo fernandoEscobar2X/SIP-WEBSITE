@@ -1,0 +1,122 @@
+/*
+ * Tokens de diseño SIP. Única fuente de verdad para color, tipografía,
+ * espaciado, radios, capas y movimiento.
+ * El tema por defecto de Tailwind se borra (--*: initial): solo existe lo que
+ * está aquí, así que clases como rounded-2xl, shadow-lg o indigo-500 no existen.
+ * Paleta tomada de marca-sip/paleta/colores.css. Contrastes AA verificados.
+ */
+@theme {
+  --*: initial;
+
+  /* Marca */
+  --color-noche: #011631;
+  --color-marino: #1d2c41;
+  --color-pacifico-400: #1777bb;
+  --color-pacifico-500: #1469ac;
+  --color-pacifico-600: #145998;
+  --color-senal: #0189f5;
+  --color-senal-600: #0076d2;
+  --color-hielo: #f3f8fd;
+  --color-blanco: #fff;
+
+  /* Apoyo: texto secundario (AA sobre su fondo) */
+  --color-bruma: #9db0c8; /* sobre noche 8.2:1, sobre marino 6.4:1 */
+  --color-acero: #4b5b72; /* sobre hielo 6.5:1, sobre blanco 6.9:1 */
+
+  /* Estados de operación: solo dentro de visualizaciones de datos */
+  --color-estado-operando: #2bd67b;
+  --color-estado-alerta: #ffb020;
+  --color-estado-paro: #ff5a5f;
+
+  /* Equipo de proceso (microdemo): acero pulido en bandas y agua. Solo para dibujar equipo
+     físico; nunca como color de interfaz. */
+  --color-metal-50: #f4f6fa;
+  --color-metal-200: #c9d0de;
+  --color-metal-300: #aab2c2;
+  --color-metal-400: #8b93a8;
+  --color-metal-500: #7c8598;
+  --color-metal-600: #6c7488;
+  --color-metal-800: #2b303c;
+  --color-agua-300: #5598e7;
+  --color-agua-600: #184f95;
+
+  /* Tipografía */
+  --font-display: var(--font-hubot), "Arial Narrow", arial, sans-serif;
+  --font-sans: var(--font-mona), arial, sans-serif;
+  --font-data: var(--font-datatype), var(--font-mona), sans-serif;
+
+  /* Escala fluida: respeta el zoom del usuario (rem + vw) */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.4;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.45;
+  --text-base: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
+  --text-base--line-height: 1.55;
+  --text-lg: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --text-lg--line-height: 1.4;
+  --text-xl: clamp(1.5rem, 1.2rem + 1vw, 2.125rem);
+  --text-xl--line-height: 1.2;
+  --text-2xl: clamp(2rem, 1.4rem + 2.2vw, 3.5rem);
+  --text-2xl--line-height: 1.02;
+  --text-3xl: clamp(2.75rem, 1.6rem + 4.4vw, 6rem);
+  --text-3xl--line-height: 0.96;
+  --text-display: clamp(3rem, 1.2rem + 7.4vw, 10.5rem);
+  --text-display--line-height: 0.9;
+
+  /* Pesos (fuentes variables: valores intermedios intencionales) */
+  --font-weight-regular: 400;
+  --font-weight-medium: 540;
+  --font-weight-semibold: 640;
+  --font-weight-bold: 740;
+  --font-weight-black: 820;
+
+  /* Interletraje: sin tracking amplio (síntoma de plantilla) */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+
+  /* Espaciado: base de 4 px para utilidades numéricas */
+  --spacing: 0.25rem;
+  --spacing-gutter: clamp(1.25rem, 0.6rem + 2.6vw, 3.5rem);
+  --spacing-section: clamp(4.5rem, 2.5rem + 5vw, 8.5rem);
+
+  /* Puntos de quiebre */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 100rem;
+
+  /* Radios: la marca es de cortes rectos; la pill solo para controles con función */
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-pill: 999px;
+
+  /* Movimiento: precisión mecánica, sin rebote */
+  --ease-sip-out: cubic-bezier(0.16, 0.84, 0.3, 1);
+  --ease-sip-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-sip-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 180ms;
+  --duration-base: 420ms;
+  --duration-slow: 900ms;
+
+  /* Ángulo de la I del logo: guía cortes, máscaras y transiciones */
+  --angle-corte: 6deg;
+}
+
+/* Capas de apilamiento (fuera de @theme: no generan utilidades) */
+:root {
+  --z-base: 0;
+  --z-raised: 10;
+  --z-header: 50;
+  --z-dock: 60;
+  --z-overlay: 90;
+  --z-transition: 100;
+
+  /* Corte a 6°: desplazamiento horizontal equivalente sobre la altura del viewport */
+  --corte-offset: calc(100vh * 0.105);
+
+  /* Elementos flotantes (WhatsApp en desktop, dock en móvil) y el espacio que reservan */
+  --dock-size: 3.5rem;
+  --dock-inset: 1.5rem;
+  --dock-clearance: calc(var(--dock-size) + var(--dock-inset) * 2);
+}

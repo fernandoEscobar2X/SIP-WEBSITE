@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Calidad (audit, tipos, lint, unitarias)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run check:publication
+      - run: npm run audit:production
+      - name: Auditoría de herramientas de desarrollo
+        run: npm run audit
+        continue-on-error: true
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test
+
+  e2e-lighthouse:
+    name: E2E y Lighthouse sobre el export
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # Playwright construye con SITE_URL local y prueba desktop + móvil (Chrome del runner).
+      - run: npx playwright test
+      # Reutiliza ese build: umbrales del plan (móvil ≥ 85; resto 100).
+      - run: npm run lighthouse -- --skip-build
+      - if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: reportes
+          path: |
+            playwright-report/
+            .lighthouse/
+          retention-days: 14

@@ -1,0 +1,62 @@
+# Investigación, informes y capturas: viven en el repo local, nunca se versionan
+investigacion/
+
+# Carpeta de marca completa: el sitio usa sus propias copias en public/brand
+marca-sip/
+
+# Originales de imagen/video (pesados): se optimizan hacia public/media
+media-src/
+
+# Estudio de video (herramienta local con sus propias dependencias; no se necesita para
+# correr el sitio). Estado y pendientes en film/ESTADO.md
+film/
+
+# dependencias
+/node_modules
+
+# pruebas
+/coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/.lighthouse/
+
+# next.js
+/.next/
+/out/
+
+# netlify
+.netlify
+
+# producción
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+
+# variables de entorno
+.env*
+
+# Documentación, auditorías y capturas locales: no forman parte de la publicación.
+*.md
+/docs/
+/audits/
+/auditorias/
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.pdf
+/artifacts/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+src/features/whatsapp/qr.generated.ts
+
+# Cabeceras de Netlify: se generan en el prebuild desde src/lib/security.ts
+public/_headers

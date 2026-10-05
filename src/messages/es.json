@@ -1,0 +1,391 @@
+{
+  "Meta": {
+    "siteName": "SIP Sistemas Inteligentes del Pacífico",
+    "titleTemplate": "%s | SIP",
+    "home": {
+      "title": "Software industrial y datos en tiempo real",
+      "description": "Conectamos procesos y datos para que tu operación decida en tiempo real: dashboards, telemetría IoT, integración de sistemas y software a la medida."
+    },
+    "services": {
+      "title": "Servicios",
+      "description": "Dashboards, aplicaciones web y móviles, telemetría industrial, integración de sistemas, automatización, análisis de datos y software a la medida."
+    },
+    "about": {
+      "title": "Nosotros",
+      "description": "Somos un equipo de Tijuana que une programación, análisis de datos y experiencia industrial para resolver problemas reales de operación."
+    },
+    "contact": {
+      "title": "Contacto",
+      "description": "Cuéntanos qué pasa en tu operación. Respondemos por correo o por WhatsApp desde Tijuana, Baja California."
+    },
+    "notFound": {
+      "title": "Página no encontrada",
+      "description": "La página que buscas no existe o cambió de lugar."
+    }
+  },
+  "Nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "primary": "Navegación principal",
+    "footer": "Navegación secundaria"
+  },
+  "Header": {
+    "homeLink": "SIP, ir al inicio",
+    "menu": "Menú",
+    "closeMenu": "Cerrar",
+    "cta": "Hablemos"
+  },
+  "Language": {
+    "label": "Idioma",
+    "current": "Español",
+    "other": "English",
+    "otherLabel": "Ver esta página en inglés"
+  },
+  "SkipLink": "Saltar al contenido",
+  "WhatsApp": {
+    "label": "WhatsApp",
+    "title": "Escríbenos por WhatsApp",
+    "message": "Hola, me interesa platicar con SIP sobre un proyecto.",
+    "qrLabel": "Código QR que abre un chat de WhatsApp con SIP",
+    "openInApp": "Abrir en WhatsApp",
+    "close": "Cerrar"
+  },
+  "Footer": {
+    "statement": "Tecnología para operar mejor, hecha en Tijuana.",
+    "location": "Tijuana, Baja California, México",
+    "emailLabel": "Correo",
+    "whatsappLabel": "WhatsApp",
+    "rights": "Sistemas Inteligentes del Pacífico"
+  },
+  "Home": {
+    "heroTitle": "<l>Tu operación,</l> <l>en tiempo real.</l>",
+    "heroLead": "Conectamos tus procesos y tus datos para que decidas con lo que está pasando ahora, no con el reporte de ayer.",
+    "heroCta": "Platiquemos tu proyecto"
+  },
+  "Hero": {
+    "carousel": "carrusel",
+    "industries": "Industrias"
+  },
+  "Industries": {
+    "manufactura": {
+      "name": "Manufactura",
+      "measure": "Cada paro de línea, con su causa y su costo, en el momento en que ocurre."
+    },
+    "logistica": {
+      "name": "Logística",
+      "measure": "Cada tráiler en patio y cada andén, con la hora real de cada movimiento."
+    },
+    "construccion": {
+      "name": "Construcción",
+      "measure": "El avance de la obra y la maquinaria en campo, sin esperar el reporte semanal."
+    },
+    "agroindustria": {
+      "name": "Agroindustria",
+      "measure": "La humedad de cada túnel decide el riego, no el calendario."
+    },
+    "energia": {
+      "name": "Energía",
+      "measure": "Generación y alarmas de cada activo, en un solo tablero."
+    }
+  },
+  "Manifesto": {
+    "label": "Quiénes somos",
+    "text": "Somos un equipo de ingeniería en Tijuana. Conectamos tus máquinas con tus sistemas para que los <line>datos</line> lleguen a quien decide en <clock>tiempo real</clock>. Sin hojas de cálculo que se contradicen ni reportes que llegan tarde: tus <bars>procesos</bars>, a la vista y medidos.",
+    "plate": {
+      "label": "Ficha de SIP",
+      "base": {
+        "label": "Desde",
+        "value": "Tijuana, Baja California"
+      },
+      "industries": {
+        "label": "Industrias",
+        "value": "Manufactura, logística, construcción, agroindustria, energía, retail y corporativo"
+      },
+      "connect": {
+        "label": "Conectamos",
+        "value": "Sensores, PLC, ERP, hojas de cálculo y las apps que ya usas"
+      },
+      "deliver": {
+        "label": "Entregamos",
+        "value": "Tableros en tiempo real, apps web y móviles, y software a medida"
+      }
+    }
+  },
+  "Reveal": {
+    "title": "Del sensor a la dec<portal>i</portal>sión."
+  },
+  "Signal": {
+    "title": "Cómo lo hacemos.",
+    "lead": "Una cadena corta entre lo que pasa en planta y quien decide, sin nadie copiando datos a mano.",
+    "steps": {
+      "signal": {
+        "name": "Señal",
+        "text": "Sensores y PLC leen lo que pasa en la máquina, el tanque o el campo."
+      },
+      "integration": {
+        "name": "Integración",
+        "text": "Esa lectura se junta con tu ERP, tus hojas de cálculo y tus apps en una sola fuente."
+      },
+      "dashboard": {
+        "name": "Tablero",
+        "text": "Cada persona ve lo que le toca, al momento, en la pantalla de la línea o en el celular."
+      },
+      "alert": {
+        "name": "Alerta",
+        "text": "Cuando algo sale de rango, avisa a quien debe atenderlo, no a todos."
+      },
+      "action": {
+        "name": "Acción",
+        "text": "La decisión queda registrada y el proceso se ajusta; lo que pasó se vuelve mejora."
+      }
+    }
+  },
+  "Services": {
+    "title": "Lo que construimos.",
+    "lead": "Ocho capacidades que se combinan según tu operación. Casi nunca hace falta empezar por todas.",
+    "cta": "Ver los servicios a detalle",
+    "items": {
+      "dashboards": {
+        "name": "Tableros y visualización",
+        "text": "Indicadores de tu operación en vivo: producción, paros, consumos y avances.",
+        "anchor": "tableros"
+      },
+      "apps": {
+        "name": "Aplicaciones web y móviles",
+        "text": "Herramientas para tu equipo en planta y en campo, con o sin conexión.",
+        "anchor": "aplicaciones"
+      },
+      "telemetry": {
+        "name": "Telemetría industrial",
+        "text": "Sensores y PLC conectados que reportan solos, sin captura manual.",
+        "anchor": "telemetria"
+      },
+      "integration": {
+        "name": "Integración de sistemas",
+        "text": "Tu ERP, tus máquinas y tus hojas de cálculo hablando el mismo idioma.",
+        "anchor": "integracion"
+      },
+      "automation": {
+        "name": "Automatización de procesos",
+        "text": "Reglas que arrancan, paran y avisan sin esperar a que alguien lo note.",
+        "anchor": "automatizacion"
+      },
+      "analytics": {
+        "name": "Análisis de datos",
+        "text": "De los registros a respuestas: dónde se pierde tiempo, material y dinero.",
+        "anchor": "analisis"
+      },
+      "custom": {
+        "name": "Software a la medida",
+        "text": "Cuando nada del mercado encaja con cómo trabajas, lo construimos.",
+        "anchor": "software-a-la-medida"
+      },
+      "support": {
+        "name": "Soporte y mantenimiento",
+        "text": "Seguimos contigo después de la entrega: monitoreo, ajustes y mejoras.",
+        "anchor": "soporte"
+      }
+    }
+  },
+  "Process": {
+    "title": "Del trazo al dato.",
+    "lead": "Una estación de bombeo instrumentada. Lo que pasa en la línea llega como dato al momento, y el control decide con él.",
+    "diagram": "Diagrama de la estación: cisterna TK-100, bomba P-101, caudalímetro FIT-101, válvula XV-101, transmisor de presión PIT-101 y tanque elevado TK-101 con su transmisor de nivel LIT-101.",
+    "app": {
+      "label": "App de supervisión de la estación de bombeo",
+      "station": "Estación de bombeo 2",
+      "screen": {
+        "label": "Modo de la pantalla",
+        "edit": "Edición",
+        "operate": "Operación"
+      },
+      "clock": "Hora",
+      "online": "En línea",
+      "alarms": {
+        "none": "Sin alarmas",
+        "one": "{count} alarma",
+        "other": "{count} alarmas"
+      },
+      "views": {
+        "label": "Vistas de la app",
+        "plant": "Planta",
+        "pump": "Mando",
+        "trend": "Tendencia",
+        "alarms": "Alarmas"
+      }
+    },
+    "edit": {
+      "label": "Herramientas de edición",
+      "suggested": "Conectar con la ruta sugerida",
+      "remove": "Quitar el tramo"
+    },
+    "pump": {
+      "title": "Bomba P-101",
+      "running": "En marcha",
+      "stopped": "Detenida",
+      "waiting": "En espera por nivel",
+      "noLine": "Sin línea",
+      "mode": "Modo de control",
+      "auto": "Automático",
+      "manual": "Manual",
+      "start": "Arrancar",
+      "stop": "Detener"
+    },
+    "valve": {
+      "title": "Válvula XV-101",
+      "value": "{value} % abierta"
+    },
+    "control": {
+      "title": "Control de nivel",
+      "start": "Arranque",
+      "stop": "Paro",
+      "value": "{value} %"
+    },
+    "summary": {
+      "title": "Resumen de operación",
+      "volume": "Volumen bombeado",
+      "starts": "Arranques",
+      "runtime": "Tiempo en marcha"
+    },
+    "readouts": {
+      "label": "Lecturas",
+      "flow": "Caudal",
+      "pressure": "Presión de descarga",
+      "level": "Nivel del tanque"
+    },
+    "trend": {
+      "title": "Nivel del tanque",
+      "window": "Últimos 30 s",
+      "start": "Arranque",
+      "stop": "Paro",
+      "now": "Nivel actual: {value} %"
+    },
+    "alarms": {
+      "title": "Alarmas y eventos",
+      "ack": "Reconocer",
+      "acked": "Reconocida",
+      "normal": "Normalizada",
+      "severity": {
+        "alarm": "Alarma",
+        "warning": "Aviso",
+        "event": "Evento"
+      }
+    },
+    "events": {
+      "lineOpen": "Tramo sin conectar: descarga P-101 → TK-101",
+      "connected": "Línea conectada: {length} m, {elbows} {elbowWord}",
+      "removed": "Tramo retirado",
+      "start": "P-101 en marcha",
+      "stop": "P-101 detenida",
+      "highLevelStop": "Nivel alto ({level} %): P-101 detenida por control",
+      "lowLevelStart": "Nivel bajo ({level} %): P-101 en marcha por control",
+      "highHighStop": "Nivel muy alto ({level} %): disparo de P-101",
+      "deadhead": "XV-101 cerrada con P-101 en marcha",
+      "auto": "P-101 en automático",
+      "manual": "P-101 en manual"
+    },
+    "elbow": {
+      "one": "codo",
+      "other": "codos"
+    },
+    "cta": {
+      "lead": "Lo mismo, con tus equipos y tus datos.",
+      "action": "Conectemos tu proceso"
+    }
+  },
+  "About": {
+    "intro": {
+      "title": "Tecnología para operar, desde el Pacífico.",
+      "lead": "Somos Sistemas Inteligentes del Pacífico. Nacimos en 2026 en Tijuana, Baja California, y somos del Pacífico porque aquí estamos: cerca de las plantas, los almacenes y los equipos para los que trabajamos."
+    },
+    "who": {
+      "title": "Una empresa joven que junta tres oficios.",
+      "text": "Programación, análisis de datos y conocimiento industrial casi nunca están en el mismo equipo. En SIP sí, y por eso una idea que nace en tu operación sale de aquí convertida en una herramienta que tu gente usa todos los días."
+    },
+    "purpose": {
+      "label": "Visión y misión",
+      "vision": {
+        "name": "Visión",
+        "text": "Ser referente en México cuando una operación necesita tecnología que resuelva de verdad: simple de usar y pensada para las personas que la operan."
+      },
+      "mission": {
+        "name": "Misión",
+        "text": "Ayudar a cada operación a producir más y a crecer, con sistemas digitales que funcionan todos los días y crecen con ella."
+      }
+    },
+    "commitments": {
+      "title": "Lo que puedes esperar de nosotros.",
+      "items": {
+        "fit": {
+          "name": "A tu medida",
+          "text": "Partimos de cómo trabaja tu operación, no de un paquete, y lo que construimos crece cuando sumas líneas o sitios."
+        },
+        "results": {
+          "name": "Resultados que se miden",
+          "text": "Antes de empezar acordamos qué número tiene que cambiar, sea un paro, un tiempo de surtido o un consumo, y lo medimos después de entregar."
+        },
+        "direct": {
+          "name": "Trato directo",
+          "text": "Hablas con quien diseña y programa tu sistema, y el mismo equipo lo atiende después de la entrega. Buscamos relaciones largas, no proyectos sueltos."
+        },
+        "lasting": {
+          "name": "Tecnología que dura",
+          "text": "Usamos lo más actual cuando resuelve algo y lo probado cuando la operación no puede parar. Cada versión mejora lo que ya funciona."
+        }
+      }
+    }
+  },
+  "Contact": {
+    "title": "Hagamos grande tu idea.",
+    "lead": "Cuéntanos qué pasa en tu operación y qué te gustaría ver en tiempo real. Te responde el equipo que lo va a construir.",
+    "channels": "Canales directos",
+    "emailLabel": "Correo",
+    "copy": "Copiar correo",
+    "copied": "Correo copiado",
+    "whatsappLabel": "WhatsApp",
+    "timeLabel": "Hora en Tijuana",
+    "yourTime": "tu hora: {time}",
+    "form": {
+      "label": "Formulario de contacto",
+      "name": "Nombre",
+      "company": "Empresa",
+      "email": "Correo",
+      "phone": "WhatsApp o teléfono",
+      "industry": "Industria",
+      "industryNone": "Sin especificar",
+      "industryOther": "Otra",
+      "message": "¿Qué pasa en tu operación?",
+      "optional": "opcional",
+      "submit": "Enviar mensaje",
+      "sending": "Enviando…",
+      "sentTitle": "Recibimos tu mensaje.",
+      "sent": "Te escribimos a {email} desde Tijuana.",
+      "failed": "No pudimos enviarlo. Escríbenos a {email} o por WhatsApp.",
+      "summary": "Revisa los campos marcados.",
+      "errors": {
+        "required": "Este campo es necesario.",
+        "tooShort": "Escribe un poco más.",
+        "tooLong": "Es demasiado largo.",
+        "email": "Revisa el correo: parece incompleto.",
+        "phone": "Revisa el número.",
+        "invalid": "Revisa este campo."
+      }
+    },
+    "agent": {
+      "tool": "Envía un mensaje al equipo de SIP (Sistemas Inteligentes del Pacífico, Tijuana) para platicar o cotizar un proyecto: tableros en tiempo real, telemetría industrial, integración de sistemas, apps web y móviles o software a medida.",
+      "name": "Nombre de la persona que escribe.",
+      "company": "Empresa u organización (opcional).",
+      "email": "Correo al que SIP debe responder.",
+      "phone": "WhatsApp o teléfono con lada (opcional).",
+      "industry": "Industria de la operación: manufactura, logistica, construccion, agroindustria, energia u otra (opcional).",
+      "message": "Qué pasa en la operación y qué se quiere lograr (mínimo 10 caracteres)."
+    }
+  },
+  "NotFound": {
+    "title": "Esta página no existe.",
+    "lead": "Puede que haya cambiado de lugar. Desde el inicio encuentras todo lo que hacemos.",
+    "back": "Volver al inicio"
+  }
+}

@@ -1,0 +1,347 @@
+@layer components {
+  /* Imagen que llena su caja (Picture y su <img>). */
+  .fill {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ---------- Apertura (noche) ---------- */
+
+  /* Móvil: la toma vertical arriba, cortada abajo a 6°, y el texto debajo. */
+  .introStage {
+    display: grid;
+  }
+
+  .introText {
+    order: 1;
+    padding-block: 2.25rem var(--spacing-section);
+  }
+
+  .introTitle {
+    margin: 0;
+    max-width: 15ch;
+    font-size: clamp(2.4rem, 1.1rem + 4.6vw, 4.75rem);
+    line-height: 0.98;
+    font-weight: var(--font-weight-black);
+    font-stretch: 108%;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .introLead {
+    margin: 1.5rem 0 0;
+    max-width: 46ch;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    color: var(--surface-muted);
+  }
+
+  /* La banda es contenedor de tamaño: el corte se calcula con su alto o su ancho reales. */
+  .band {
+    position: relative;
+    height: 46svh;
+    container-type: size;
+  }
+
+  .bandFrame {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 100cqw * tan(var(--angle-corte))), 0 100%);
+  }
+
+  .bandMedia {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Cortina de noche: su borde de ataque tiene el ángulo del corte de la banda y se retira hacia
+     abajo. Solo con JavaScript y sin movimiento reducido (data-motion="on"). */
+  .bandCurtain {
+    display: none;
+  }
+
+  :global(:root[data-motion="on"]) .bandCurtain {
+    position: absolute;
+    inset: calc(-100cqw * tan(var(--angle-corte))) 0 0;
+    display: block;
+    background-color: var(--color-noche);
+    clip-path: polygon(0 calc(100cqw * tan(var(--angle-corte))), 100% 0, 100% 100%, 0 100%);
+    animation: curtain-down calc(var(--duration-slow) * 1.5) var(--ease-sip-in-out) 150ms both;
+  }
+
+  @keyframes curtain-down {
+    to {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes curtain-right {
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Desktop: texto a la izquierda y la banda a la derecha, con el corte en su borde izquierdo. */
+  @media (width >= 64rem) {
+    .intro {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .introStage {
+      display: block;
+    }
+
+    .introText {
+      position: relative;
+      z-index: var(--z-raised);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: min(100svh, 60rem);
+      padding-block: 9rem 5rem;
+    }
+
+    .introTitle,
+    .introLead {
+      max-width: min(40rem, 41vw);
+    }
+
+    .band {
+      position: absolute;
+      inset-block: 0;
+      inset-inline: 47% 0;
+      height: auto;
+    }
+
+    .bandFrame {
+      clip-path: polygon(calc(100cqh * tan(var(--angle-corte))) 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    /* Margen arriba para el parallax: la foto baja hasta 7 % de su alto con el scroll. */
+    .bandMedia {
+      inset-block-start: -8%;
+    }
+
+    .bandMedia .cover {
+      object-position: 62% 50%;
+    }
+
+    :global(:root[data-motion="on"]) .bandCurtain {
+      inset: 0 calc(-100cqh * tan(var(--angle-corte))) 0 0;
+      clip-path: polygon(calc(100cqh * tan(var(--angle-corte))) 0, 100% 0, 100% 100%, 0 100%);
+      animation-name: curtain-right;
+    }
+  }
+
+  /* ---------- Quiénes somos (hielo) ---------- */
+  .who {
+    padding-block: var(--spacing-section);
+  }
+
+  .whoLayout {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .whoTitle {
+    margin: 0;
+    max-width: 16ch;
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+    font-stretch: 106%;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .whoText {
+    margin: 0;
+    max-width: 46ch;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+  }
+
+  /* Ventana con el corte de la I en sus dos lados: el desplazamiento en % del ancho es
+     (alto / ancho) · tan 6°. Sin JS es la forma final; WhoMotion la abre desde una rendija. */
+  .slit {
+    position: relative;
+    margin-block-start: 1.5rem;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    clip-path: polygon(
+      calc(3 / 4 * tan(var(--angle-corte)) * 100%) 0,
+      100% 0,
+      calc(100% - 3 / 4 * tan(var(--angle-corte)) * 100%) 100%,
+      0 100%
+    );
+  }
+
+  .slitImage {
+    object-position: 55% 60%;
+  }
+
+  @media (width >= 64rem) {
+    .whoLayout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: clamp(3rem, 1rem + 5vw, 7rem);
+      align-items: end;
+    }
+
+    .whoText {
+      padding-block-end: 0.4rem;
+    }
+
+    .slit {
+      grid-column: 1 / -1;
+      margin-block-start: 3rem;
+      aspect-ratio: 21 / 9;
+      clip-path: polygon(
+        calc(9 / 21 * tan(var(--angle-corte)) * 100%) 0,
+        100% 0,
+        calc(100% - 9 / 21 * tan(var(--angle-corte)) * 100%) 100%,
+        0 100%
+      );
+    }
+  }
+
+  /* ---------- Visión y misión (noche) ---------- */
+  .purpose {
+    padding-block: var(--spacing-section);
+  }
+
+  .purposeList {
+    display: grid;
+    gap: clamp(3.5rem, 2rem + 4vw, 6.5rem);
+  }
+
+  .purposeRow {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  /* La palabra no se parte: su ancho cambia sin mover lo demás. Dos canales de ancho que se suman:
+     --wdth, el de cada letra (su reposo lo lee PurposeMotion), y --kick, el de la velocidad del
+     scroll sobre la palabra entera. La máscara recorta solo abajo: las letras suben desde la base. */
+  .purposeWord {
+    --wdth: 112;
+    --kick: 0;
+
+    margin: 0;
+    font-size: clamp(4rem, 0.5rem + 10vw, 12rem);
+    line-height: 0.86;
+    font-weight: var(--font-weight-black);
+    font-stretch: clamp(75%, calc((var(--wdth) + var(--kick)) * 1%), 125%);
+    letter-spacing: var(--tracking-tight);
+    white-space: nowrap;
+    clip-path: inset(-50% -15% 0);
+  }
+
+  /* Cada letra del ensamble (SplitText): gira sobre su base y lleva su propio ancho. */
+  .char {
+    font-stretch: clamp(75%, calc((var(--wdth) + var(--kick)) * 1%), 125%);
+    transform-origin: 50% 100%;
+  }
+
+  .purposeText {
+    margin: 0;
+    max-width: 34ch;
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    color: var(--surface-muted);
+  }
+
+  @media (width >= 64rem) {
+    /* La palabra y su declaración comparten la línea base de la última línea del texto. */
+    .purposeRow {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      column-gap: clamp(2rem, 1rem + 3vw, 5rem);
+      align-items: last baseline;
+    }
+
+    .purposeWord {
+      --wdth: 118;
+    }
+
+    .purposeText {
+      font-size: var(--text-xl);
+      line-height: 1.3;
+    }
+  }
+
+  /* ---------- Compromisos (hielo) ---------- */
+  .commitments {
+    padding-block: var(--spacing-section);
+  }
+
+  .commitmentsTitle {
+    margin: 0 0 clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+    max-width: 18ch;
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+    font-stretch: 106%;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .commitmentList {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-block-end: 1px solid var(--surface-line);
+  }
+
+  .commitment {
+    position: relative;
+    display: grid;
+    gap: 0.75rem;
+    padding-block: 1.75rem 2rem;
+  }
+
+  .rule {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: 1px;
+    background-color: var(--surface-line);
+    transform-origin: left center;
+  }
+
+  .commitmentName {
+    --wdth: 100;
+
+    margin: 0;
+    font-size: clamp(1.6rem, 1rem + 1.6vw, 2.75rem);
+    line-height: 1.05;
+    font-weight: var(--font-weight-bold);
+    font-stretch: calc(var(--wdth) * 1%);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .commitmentText {
+    margin: 0;
+    max-width: 46ch;
+    color: var(--surface-muted);
+  }
+
+  /* Desktop: nombre y texto en dos columnas; el nombre cabe en una línea y su ancho anima sin
+     cambiar el alto de la fila. */
+  @media (width >= 64rem) {
+    .commitment {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      column-gap: clamp(2rem, 1rem + 3vw, 5rem);
+      align-items: baseline;
+      padding-block: 2.25rem 2.5rem;
+    }
+
+    .commitmentName {
+      --wdth: 104;
+
+      white-space: nowrap;
+    }
+  }
+}

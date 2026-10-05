@@ -1,0 +1,177 @@
+@layer components {
+  .section {
+    padding-block: var(--spacing-section);
+  }
+
+  .header {
+    display: grid;
+    gap: 1.25rem;
+    margin-block-end: clamp(2rem, 1rem + 3vw, 3.5rem);
+
+    @media (width >= 64rem) {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: end;
+      column-gap: var(--spacing-gutter);
+    }
+  }
+
+  .title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 1.3rem + 2.6vw, 3.75rem);
+    line-height: 1;
+    font-weight: var(--font-weight-bold);
+    font-stretch: 106%;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .lead {
+    margin: 0;
+    max-width: 42ch;
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    color: var(--surface-muted);
+  }
+
+  /* ---------- Diagrama (desktop) ---------- */
+  .diagram {
+    display: none;
+
+    @media (width >= 64rem) {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+  }
+
+  .trace,
+  .glyph {
+    fill: none;
+  }
+
+  .trace {
+    stroke: var(--color-pacifico-500);
+    stroke-width: 8;
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 0;
+  }
+
+  .sourceLine {
+    stroke: var(--color-acero);
+    stroke-width: 3;
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 0;
+  }
+
+  .source {
+    fill: var(--color-acero);
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: var(--font-weight-semibold);
+    font-stretch: 84%;
+    text-anchor: middle;
+  }
+
+  /* Nodo: encendido por defecto (sin JS o con movimiento reducido). */
+  .node {
+    --node: var(--color-senal-600);
+  }
+
+  .node[data-kind="alert"] {
+    --node: var(--color-estado-alerta);
+  }
+
+  .node[data-kind="action"] {
+    --node: var(--color-estado-operando);
+  }
+
+  .nodeRing {
+    fill: var(--color-blanco);
+    stroke: var(--node);
+    stroke-width: 3;
+    transition: stroke var(--duration-base) var(--ease-sip-out);
+  }
+
+  .glyph {
+    stroke: var(--node);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke var(--duration-base) var(--ease-sip-out);
+  }
+
+  /* ---------- Pasos ---------- */
+  .steps {
+    display: grid;
+    gap: 1.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0;
+      margin-block-start: 1.25rem;
+    }
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    column-gap: 1rem;
+    align-items: start;
+
+    @media (width >= 64rem) {
+      display: block;
+
+      /* El texto arranca bajo el borde izquierdo del nodo (x 18 de cada columna de 240). */
+      padding-inline: 1.5% 1.75rem;
+    }
+  }
+
+  .stepGlyph {
+    grid-row: span 2;
+    width: 3.5rem;
+    height: 3.5rem;
+
+    @media (width >= 64rem) {
+      display: none;
+    }
+  }
+
+  .stepName {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    font-weight: var(--font-weight-bold);
+    font-stretch: 100%;
+    transition: color var(--duration-base) var(--ease-sip-out);
+  }
+
+  .stepText {
+    margin: 0.35rem 0 0;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    color: var(--surface-muted);
+  }
+
+  /* Con movimiento: lo que aún no recibe el dato queda en acero; al recibirlo, se enciende. */
+  [data-armed] [data-diagram] .node:not([data-on]) {
+    --node: var(--color-acero);
+  }
+
+  [data-armed] .step:not([data-on]) .node {
+    --node: var(--color-acero);
+  }
+
+  [data-armed] .step:not([data-on]) .stepName {
+    color: var(--color-acero);
+  }
+
+  [data-armed] .trace,
+  [data-armed] .sourceLine {
+    stroke-dashoffset: 1;
+  }
+}

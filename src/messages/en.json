@@ -1,0 +1,391 @@
+{
+  "Meta": {
+    "siteName": "SIP Sistemas Inteligentes del Pacífico",
+    "titleTemplate": "%s | SIP",
+    "home": {
+      "title": "Industrial software and real-time data",
+      "description": "We connect processes and data so your operation can decide in real time: dashboards, IoT telemetry, systems integration and custom software."
+    },
+    "services": {
+      "title": "Services",
+      "description": "Dashboards, web and mobile apps, industrial telemetry, systems integration, process automation, data analytics and custom software."
+    },
+    "about": {
+      "title": "About",
+      "description": "A Tijuana-based team combining software engineering, data analytics and industrial know-how to solve real operational problems."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Tell us what is happening on your floor. We reply by email or WhatsApp from Tijuana, Baja California."
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist or has moved."
+    }
+  },
+  "Nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "primary": "Main navigation",
+    "footer": "Secondary navigation"
+  },
+  "Header": {
+    "homeLink": "SIP, go to home page",
+    "menu": "Menu",
+    "closeMenu": "Close",
+    "cta": "Let’s talk"
+  },
+  "Language": {
+    "label": "Language",
+    "current": "English",
+    "other": "Español",
+    "otherLabel": "View this page in Spanish"
+  },
+  "SkipLink": "Skip to content",
+  "WhatsApp": {
+    "label": "WhatsApp",
+    "title": "Message us on WhatsApp",
+    "message": "Hi, I’d like to talk to SIP about a project.",
+    "qrLabel": "QR code that opens a WhatsApp chat with SIP",
+    "openInApp": "Open in WhatsApp",
+    "close": "Close"
+  },
+  "Footer": {
+    "statement": "Technology to run operations better, built in Tijuana.",
+    "location": "Tijuana, Baja California, Mexico",
+    "emailLabel": "Email",
+    "whatsappLabel": "WhatsApp",
+    "rights": "Sistemas Inteligentes del Pacífico"
+  },
+  "Home": {
+    "heroTitle": "<l>Your operation,</l> <l>in real time.</l>",
+    "heroLead": "We connect your processes and your data so every decision runs on what is happening now, not on yesterday’s report.",
+    "heroCta": "Let’s talk about your project"
+  },
+  "Hero": {
+    "carousel": "carousel",
+    "industries": "Industries"
+  },
+  "Industries": {
+    "manufactura": {
+      "name": "Manufacturing",
+      "measure": "Every line stop, with its cause and its cost, the moment it happens."
+    },
+    "logistica": {
+      "name": "Logistics",
+      "measure": "Every trailer in the yard and every dock door, timed as it moves."
+    },
+    "construccion": {
+      "name": "Construction",
+      "measure": "Site progress and field equipment, without waiting for the weekly report."
+    },
+    "agroindustria": {
+      "name": "Agribusiness",
+      "measure": "Each tunnel’s soil moisture drives irrigation, not the calendar."
+    },
+    "energia": {
+      "name": "Energy",
+      "measure": "Output and alarms from every asset, on a single dashboard."
+    }
+  },
+  "Manifesto": {
+    "label": "Who we are",
+    "text": "We are an engineering team in Tijuana. We connect your machines to your systems so <line>data</line> reaches the people who decide in <clock>real time</clock>. No spreadsheets that contradict each other, no reports that arrive late: your <bars>processes</bars>, visible and measured.",
+    "plate": {
+      "label": "SIP at a glance",
+      "base": {
+        "label": "Based in",
+        "value": "Tijuana, Baja California, Mexico"
+      },
+      "industries": {
+        "label": "Industries",
+        "value": "Manufacturing, logistics, construction, agribusiness, energy, retail and corporate"
+      },
+      "connect": {
+        "label": "We connect",
+        "value": "Sensors, PLCs, ERPs, spreadsheets and the apps you already use"
+      },
+      "deliver": {
+        "label": "We deliver",
+        "value": "Real-time dashboards, web and mobile apps, and custom software"
+      }
+    }
+  },
+  "Reveal": {
+    "title": "From sensor to dec<portal>i</portal>sion."
+  },
+  "Signal": {
+    "title": "How we do it.",
+    "lead": "A short chain between what happens on the floor and whoever decides, with nobody copying data by hand.",
+    "steps": {
+      "signal": {
+        "name": "Signal",
+        "text": "Sensors and PLCs read what happens at the machine, the tank or the field."
+      },
+      "integration": {
+        "name": "Integration",
+        "text": "That reading joins your ERP, your spreadsheets and your apps in a single source."
+      },
+      "dashboard": {
+        "name": "Dashboard",
+        "text": "Everyone sees what matters to them, as it happens, on the line screen or on their phone."
+      },
+      "alert": {
+        "name": "Alert",
+        "text": "When something goes out of range, it notifies whoever must act, not everyone."
+      },
+      "action": {
+        "name": "Action",
+        "text": "The decision is logged and the process adjusts; what happened becomes an improvement."
+      }
+    }
+  },
+  "Services": {
+    "title": "What we build.",
+    "lead": "Eight capabilities that combine to fit your operation. You almost never need to start with all of them.",
+    "cta": "See the services in detail",
+    "items": {
+      "dashboards": {
+        "name": "Dashboards and visualization",
+        "text": "Your operation’s indicators live: output, downtime, consumption and progress.",
+        "anchor": "dashboards"
+      },
+      "apps": {
+        "name": "Web and mobile apps",
+        "text": "Tools for your team on the floor and in the field, online or offline.",
+        "anchor": "apps"
+      },
+      "telemetry": {
+        "name": "Industrial telemetry",
+        "text": "Connected sensors and PLCs that report on their own, no manual entry.",
+        "anchor": "telemetry"
+      },
+      "integration": {
+        "name": "Systems integration",
+        "text": "Your ERP, your machines and your spreadsheets speaking the same language.",
+        "anchor": "integration"
+      },
+      "automation": {
+        "name": "Process automation",
+        "text": "Rules that start, stop and alert without waiting for someone to notice.",
+        "anchor": "automation"
+      },
+      "analytics": {
+        "name": "Data analysis",
+        "text": "From records to answers: where time, material and money are lost.",
+        "anchor": "analytics"
+      },
+      "custom": {
+        "name": "Custom software",
+        "text": "When nothing on the market fits how you work, we build it.",
+        "anchor": "custom-software"
+      },
+      "support": {
+        "name": "Support and maintenance",
+        "text": "We stay with you after delivery: monitoring, adjustments and improvements.",
+        "anchor": "support"
+      }
+    }
+  },
+  "Process": {
+    "title": "From stroke to data.",
+    "lead": "An instrumented pumping station. Whatever happens on the line arrives as data in real time, and the control acts on it.",
+    "diagram": "Station diagram: TK-100 cistern, P-101 pump, FIT-101 flowmeter, XV-101 valve, PIT-101 pressure transmitter and the TK-101 elevated tank with its LIT-101 level transmitter.",
+    "app": {
+      "label": "Pumping station supervision app",
+      "station": "Pumping station 2",
+      "screen": {
+        "label": "Screen mode",
+        "edit": "Edit",
+        "operate": "Operate"
+      },
+      "clock": "Time",
+      "online": "Online",
+      "alarms": {
+        "none": "No alarms",
+        "one": "{count} alarm",
+        "other": "{count} alarms"
+      },
+      "views": {
+        "label": "App views",
+        "plant": "Plant",
+        "pump": "Control",
+        "trend": "Trend",
+        "alarms": "Alarms"
+      }
+    },
+    "edit": {
+      "label": "Editing tools",
+      "suggested": "Connect with the suggested route",
+      "remove": "Remove the run"
+    },
+    "pump": {
+      "title": "Pump P-101",
+      "running": "Running",
+      "stopped": "Stopped",
+      "waiting": "Waiting on level",
+      "noLine": "No line",
+      "mode": "Control mode",
+      "auto": "Auto",
+      "manual": "Manual",
+      "start": "Start",
+      "stop": "Stop"
+    },
+    "valve": {
+      "title": "Valve XV-101",
+      "value": "{value}% open"
+    },
+    "control": {
+      "title": "Level control",
+      "start": "Start",
+      "stop": "Stop",
+      "value": "{value}%"
+    },
+    "summary": {
+      "title": "Operations summary",
+      "volume": "Volume pumped",
+      "starts": "Starts",
+      "runtime": "Run time"
+    },
+    "readouts": {
+      "label": "Readings",
+      "flow": "Flow",
+      "pressure": "Discharge pressure",
+      "level": "Tank level"
+    },
+    "trend": {
+      "title": "Tank level",
+      "window": "Last 30 s",
+      "start": "Start",
+      "stop": "Stop",
+      "now": "Current level: {value}%"
+    },
+    "alarms": {
+      "title": "Alarms and events",
+      "ack": "Acknowledge",
+      "acked": "Acknowledged",
+      "normal": "Cleared",
+      "severity": {
+        "alarm": "Alarm",
+        "warning": "Warning",
+        "event": "Event"
+      }
+    },
+    "events": {
+      "lineOpen": "Run not connected: P-101 discharge → TK-101",
+      "connected": "Line connected: {length} m, {elbows} {elbowWord}",
+      "removed": "Run removed",
+      "start": "P-101 running",
+      "stop": "P-101 stopped",
+      "highLevelStop": "High level ({level}%): P-101 stopped by control",
+      "lowLevelStart": "Low level ({level}%): P-101 started by control",
+      "highHighStop": "High-high level ({level}%): P-101 tripped",
+      "deadhead": "XV-101 closed with P-101 running",
+      "auto": "P-101 in auto",
+      "manual": "P-101 in manual"
+    },
+    "elbow": {
+      "one": "elbow",
+      "other": "elbows"
+    },
+    "cta": {
+      "lead": "The same, with your equipment and your data.",
+      "action": "Let’s connect your process"
+    }
+  },
+  "About": {
+    "intro": {
+      "title": "Technology for operations, from the Pacific.",
+      "lead": "We are Sistemas Inteligentes del Pacífico, founded in 2026 in Tijuana, Baja California. The Pacific is in our name because this is where we are: close to the plants, warehouses and teams we work for."
+    },
+    "who": {
+      "title": "A young company that brings three trades together.",
+      "text": "Programming, data analysis and industrial know-how rarely sit on the same team. At SIP they do, so an idea born in your operation leaves here as a tool your people use every day."
+    },
+    "purpose": {
+      "label": "Vision and mission",
+      "vision": {
+        "name": "Vision",
+        "text": "To be the reference in Mexico when an operation needs technology that truly solves the problem: simple to use and designed for the people who run it."
+      },
+      "mission": {
+        "name": "Mission",
+        "text": "To help every operation produce more and grow, with digital systems that work every day and grow along with it."
+      }
+    },
+    "commitments": {
+      "title": "What you can expect from us.",
+      "items": {
+        "fit": {
+          "name": "Built around you",
+          "text": "We start from how your operation works, not from a package, and what we build grows as you add lines or sites."
+        },
+        "results": {
+          "name": "Results you can measure",
+          "text": "Before we start, we agree on which number has to change, whether it’s downtime, picking time or energy use, and we measure it after delivery."
+        },
+        "direct": {
+          "name": "Direct contact",
+          "text": "You talk to the people who design and build your system, and the same team supports it after delivery. We look for long relationships, not one-off projects."
+        },
+        "lasting": {
+          "name": "Technology that lasts",
+          "text": "We use the newest tools when they solve something and proven ones when the operation can’t stop. Every release improves what already works."
+        }
+      }
+    }
+  },
+  "Contact": {
+    "title": "Let’s make your idea big.",
+    "lead": "Tell us what is happening in your operation and what you would like to see in real time. The team that will build it is the one that answers.",
+    "channels": "Direct channels",
+    "emailLabel": "Email",
+    "copy": "Copy email",
+    "copied": "Email copied",
+    "whatsappLabel": "WhatsApp",
+    "timeLabel": "Time in Tijuana",
+    "yourTime": "your time: {time}",
+    "form": {
+      "label": "Contact form",
+      "name": "Name",
+      "company": "Company",
+      "email": "Email",
+      "phone": "WhatsApp or phone",
+      "industry": "Industry",
+      "industryNone": "Not specified",
+      "industryOther": "Other",
+      "message": "What is happening in your operation?",
+      "optional": "optional",
+      "submit": "Send message",
+      "sending": "Sending…",
+      "sentTitle": "We got your message.",
+      "sent": "We will write to {email} from Tijuana.",
+      "failed": "We couldn’t send it. Write to {email} or on WhatsApp.",
+      "summary": "Please check the highlighted fields.",
+      "errors": {
+        "required": "This field is required.",
+        "tooShort": "Please write a bit more.",
+        "tooLong": "This is too long.",
+        "email": "Check the email: it looks incomplete.",
+        "phone": "Check the number.",
+        "invalid": "Check this field."
+      }
+    },
+    "agent": {
+      "tool": "Sends a message to the SIP team (Sistemas Inteligentes del Pacífico, Tijuana, Mexico) to discuss or quote a project: real-time dashboards, industrial telemetry, systems integration, web and mobile apps or custom software.",
+      "name": "Name of the person writing.",
+      "company": "Company or organization (optional).",
+      "email": "Email SIP should reply to.",
+      "phone": "WhatsApp or phone number with country code (optional).",
+      "industry": "Industry of the operation: manufactura, logistica, construccion, agroindustria, energia or otra (optional).",
+      "message": "What is happening in the operation and what should be achieved (at least 10 characters)."
+    }
+  },
+  "NotFound": {
+    "title": "This page doesn’t exist.",
+    "lead": "It may have moved. The home page leads to everything we do.",
+    "back": "Back to home"
+  }
+}
